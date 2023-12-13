@@ -59,17 +59,22 @@
            Each generic object is labeled as follows:
            <pre>
             {
-                "video": "ball-0",
-                "labels": [
+                video
+                label[
                     {
-                        "class_name": "ball",
-                        "specific_prompt": "red ball",
-                    },
+                        object = "ball"
+                        object_synonym = ""
+                        attribute  = "red"
+                        attribute_synonym = ""
+                        tracks = {..}
+                    }
                     {
-                        "class_name": "ball",
-                        "specific_prompt": "black ball",
-                    },
-                            ...
+                        object = "ball"
+                        object_synonym = ""
+                        attribute  = "black"
+                        attribute_synonym = ""
+                        tracks = {..}
+                    }
                 ]
             }
             </pre>
