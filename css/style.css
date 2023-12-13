@@ -36,7 +36,7 @@ body {
 
 /* Style for the headline on the left */
 .navbar h3 {
-    color: red;  /* Text color for the headline */
+    color: white;  /* Text color for the headline */
     margin: 0;
     padding: 10px 0px 10px 200px;
     float: left;  /* Float left to place it on the left side */

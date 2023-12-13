@@ -1,1 +1,1 @@
-# rebuttal repo for Open-GMOT (AAAI24)
+# repo for Z-GMOT (NAACL24)
