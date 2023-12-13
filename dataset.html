@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>
+        Open-GMOT: Open-Vocabulary Generic Multiple Object Tracking with Motion-Appearance Cost (MAC) SORT
+    </title>
+    <meta content="Open-GMOT" property="og:title" />
+    <meta content="A typical pipeline for multi-object tracking (MOT) is to use a detector for object localization, and following re-identification (re-ID) for object association. This pipeline is partially motivated by recent progress in both object detec- tion and re-ID, and partially motivated by biases in existing tracking datasets, where most objects tend to have distin- guishing appearance and re-ID models are sufficient for es- tablishing associations. In response to such bias, we would like to re-emphasize that methods for multi-object tracking should also work when object appearance is not sufficiently discriminative. To this end, we propose a large-scale dataset for multi-human tracking, where humans have similar appearance, diverse motion and extreme articulation. As the dataset contains mostly group dancing videos, we name it “DanceTrack”. We expect DanceTrack to provide a better platform to develop more MOT algorithms that rely less on visual discrimination and depend more on motion analysis. We benchmark several state-of-the-art trackers on our dataset and observe a significant performance drop on DanceTrack when compared against existing benchmarks." name="description" property="og:description" />
+    <meta content="https://github.com/DanceTrack" property="og:url" />
+    <meta name="keywords" content="Generic Multi-Object Tracking in Uniform Appearance and Diverse Motion">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <script defer src="js/fontawesome.all.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <h3>Open-GMOT demo website</h3>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="result.html">Result</a></li>
+            <li><a href="code.html">Code</a></li>
+            <li><a href="dataset.html">Dataset</a></li>
+        </ul>
+        <script>
+            // Get the current URL
+            var currentURL = window.location.href;
+        
+            // Select all navigation links
+            var navLinks = document.querySelectorAll('.navbar a');
+        
+            // Loop through the links to find the active one
+            for (var i = 0; i < navLinks.length; i++) {
+                var linkURL = navLinks[i].href;
+        
+                // Check if the current URL contains the link's URL
+                if (currentURL.indexOf(linkURL) !== -1) {
+                    // Add the "active" class to the link
+                    navLinks[i].classList.add('active');
+                }
+            }
+        </script>
+    </div>
+
+    <div class="n-article">
+        <h2 class="dataset" id="dataset">
+           Dataset
+        </h2>
+        <p>
+           We offer a dataset that surpasses existing official tracking datasets, such as <b>GMOT-40</b>, <b>AnimalTrack</b> and <b>DanceTrack</b>,
+           in terms of advancement. Our dataset includes videos with a wider range of generic objects, each accompanied
+           by its respective textual descriptions. Our dataset with textual description annotations are formatted in COCO format.
+           Each generic object is labeled as follows:
+           <pre>
+            {
+                "video": "",
+                "labels": [
+                    {
+                        "class_name": "",
+                        "synonyms": [],
+                        "caption": "",
+                        "box_labels: {}"
+                    },
+                    {
+                        "class_name": "",
+                        "synonyms": [],
+                        "caption": "",
+                        "box_labels: {}"
+                    },
+                            ...
+                ]
+            }
+            </pre>
+           <ul>
+               <li><b>“Video”</b>: video name. For example "airplane-0" </li>
+               <li><b>”Class Name"</b>: particular generic objects type. For example, helicopter</li>
+               <li><b>“Synonyms”</b>: synonym of object. For example, aircraft, air-plane</li>
+               <li><b>“Caption”</b>: The caption is followed the format:
+                   <p style="font-size: 20px; text-align: center;">
+                       <span style="font-family: 'Courier New', monospace; font-weight: bold; color: green;">&lt;attribute.object&gt;</span>
+                       &nbsp;include&nbsp;  <span style="font-family: 'Courier New', monospace; font-weight: bold; color: orange;">&lt;attribute.part&gt;</span>
+                       &nbsp;exclude&nbsp;  <span style="font-family: 'Courier New', monospace; font-weight: bold; color: crimson;">&lt;attribute.part&gt;</span>
+                   </p>
+               </li>
+           </ul>
+           <div class="image-container">
+               <div class="image-content">
+                    <img src="media/dataset_gmot40.jpg" alt="Image 1" style="width:100%">
+                    <pre class="pre-container" style="text-align: left;">
+                    {
+                        &nbsp;&nbsp;<b>“Video”</b>: stock-3
+                        &nbsp;&nbsp;<b>”Class Name"</b>: stock
+                        &nbsp;&nbsp;<b>“Synonyms”</b>: [“wolf”, “dog”]
+                        &nbsp;&nbsp;<b>“Caption”</b>:<span style="font-family: 'Courier New', monospace; font-weight: bold; color: green;">stock</span> include  <span style="font-family: 'Courier New', monospace; font-weight: bold; color: orange;">grey wolf</span> exclude  <span style="font-family: 'Courier New', monospace; font-weight: bold; color: crimson;">black buffalo</span>
+                    }
+                    </pre>
+               </div>
+               <div class="image-content">
+                   <img src="media/dataset_animaltrack.jpg" alt="Image 2" style="width:100%">
+                   <pre class="pre-container" style="text-align: left;">
+                    {
+                        &nbsp;&nbsp;<b>“Video”</b>: horse_7 
+                        &nbsp;&nbsp;<b>”Class Name"</b>: car
+                        &nbsp;&nbsp;<b>“Synonyms”</b>: [“equine”, “steed”, “four-legged animal”]
+                        &nbsp;&nbsp;<b>“Caption”</b>: <span style="font-family: 'Courier New', monospace; font-weight: bold; color: green;">horse</span> include  <span style="font-family: 'Courier New', monospace; font-weight: bold; color: orange;">on the ground</span> exclude  <span style="font-family: 'Courier New', monospace; font-weight: bold; color: crimson;">in the river</span>
+                    }
+                   </pre>
+               </div>
+               <div class="image-content">
+                   <img src="media/dataset_dancetrack.jpg" alt="Image 2" style="width:100%">
+                   <pre class="pre-container" style="text-align: left;">
+                    {
+                        &nbsp;&nbsp;<b>“Video”</b>: dancetrack0032 
+                        &nbsp;&nbsp;<b>”Class Name"</b>: person
+                        &nbsp;&nbsp;<b>“Synonyms”</b>: [“human”, “athlete”, “dancer”, “tin soldier”, “performer”]
+                        &nbsp;&nbsp;<b>“Caption”</b>: <span style="font-family: 'Courier New', monospace; font-weight: bold; color: green;">person</span> include  <span style="font-family: 'Courier New', monospace; font-weight: bold; color: orange;">on stage, in guard uniform</span> exclude  <span style="font-family: 'Courier New', monospace; font-weight: bold; color: crimson;">{None}</span>
+                    }
+                    </pre>
+               </div>
+               <!-- Add more images with captions as needed -->
+           </div>
+        </p>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p style="text-align: center;">&copy; Website for AAAI2024's submission</p>
+        </div>
+    </footer>
+</body>

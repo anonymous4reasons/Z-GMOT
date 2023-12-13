@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>
+        Open-GMOT: Open-Vocabulary Generic Multiple Object Tracking with Motion-Appearance Cost (MAC) SORT
+    </title>
+    <meta content="Open-GMOT" property="og:title" />
+    <meta content="A typical pipeline for multi-object tracking (MOT) is to use a detector for object localization, and following re-identification (re-ID) for object association. This pipeline is partially motivated by recent progress in both object detec- tion and re-ID, and partially motivated by biases in existing tracking datasets, where most objects tend to have distin- guishing appearance and re-ID models are sufficient for es- tablishing associations. In response to such bias, we would like to re-emphasize that methods for multi-object tracking should also work when object appearance is not sufficiently discriminative. To this end, we propose a large-scale dataset for multi-human tracking, where humans have similar appearance, diverse motion and extreme articulation. As the dataset contains mostly group dancing videos, we name it “DanceTrack”. We expect DanceTrack to provide a better platform to develop more MOT algorithms that rely less on visual discrimination and depend more on motion analysis. We benchmark several state-of-the-art trackers on our dataset and observe a significant performance drop on DanceTrack when compared against existing benchmarks." name="description" property="og:description" />
+    <meta content="https://github.com/DanceTrack" property="og:url" />
+    <meta name="keywords" content="Generic Multi-Object Tracking in Uniform Appearance and Diverse Motion">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <script defer src="js/fontawesome.all.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <h2>Open-GMOT demo website</h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="result.html">Result</a></li>
+            <li><a href="code.html">Code</a></li>
+            <li><a href="dataset.html">Dataset</a></li>
+        </ul>
+        <script>
+            // Get the current URL
+            var currentURL = window.location.href;
+        
+            // Select all navigation links
+            var navLinks = document.querySelectorAll('.navbar a');
+        
+            // Loop through the links to find the active one
+            for (var i = 0; i < navLinks.length; i++) {
+                var linkURL = navLinks[i].href;
+        
+                // Check if the current URL contains the link's URL
+                if (currentURL.indexOf(linkURL) !== -1) {
+                    // Add the "active" class to the link
+                    navLinks[i].classList.add('active');
+                }
+            }
+        </script>
+    </div>
+
+    <div class="n-article">
+        <div class="n-page video">
+             <!------------------------------------------------------Section Boundary-------------------------------------------------->
+            <h2 id="results">
+                Results
+            </h2>
+            <h3 class="results" id="qualitative">
+                Qualitative Result
+            </h3>
+            <div class="n-page video">
+                <!--             <video class="centered shadow" width="100%" autoplay muted loop playsinline>
+                                <!-- t=0.001 is a hack to make iPhone show video thumbnail -->
+                <!--                 <source src="https://www.youtube.com/embed/IvxeJRg4rYg" type="video/mp4" /> -->
+                <!--             </video>  -->
+                <!--         <h2>
+                            Narrated Results Video
+                        </h2> --> 
+                        <p style="font-size: 20px; text-align: center;">Tracking prompt: 
+                            <span style="font-weight: bold; color: green;">"car</span>
+                            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
+                            <span style="font-weight: bold; color: orange;">&nbsp;red color</span>
+                            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
+                            <span style="font-weight: bold;  color: crimson;">&nbsp;yellow, blue, black, white color"</span>
+                        </p>
+                        <div class="videoWrapper shadow">
+                            <iframe width="560" height="315" border-style=none src="https://www.youtube.com/embed/MX8g-8NXx7w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        
+                        <p style="font-size: 20px; text-align: center;">Tracking prompt: 
+                            <span style="font-weight: bold; color: green;">"car</span>
+                            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
+                            <span style="font-weight: bold; color: orange;">&nbsp;yellow color</span>
+                            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
+                            <span style="font-weight: bold; color: crimson;">&nbsp;red, blue, black, white color"</span>
+                        </p>
+                        <div class="videoWrapper shadow">
+                            <iframe width="560" height="315" border-style=none src="https://www.youtube.com/embed/H7nVN4VRhbk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    
+                        <p style="font-size: 20px; text-align: center;">Tracking prompt: 
+                            <span style="font-weight: bold; color: green;">"car</span>
+                            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
+                            <span style="font-weight: bold; color: orange;">&nbsp;dark blue car</span>
+                            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
+                            <span style="font-weight: bold; color: crimson;">&nbsp;red, yellow, black, white"</span>
+                        </p>
+                        <div class="videoWrapper shadow">
+                            <iframe width="560" height="315" border-style=none src="https://www.youtube.com/embed/E7mSlziENQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+
+                        <p style="font-size: 22px; text-align: center;">Tracking prompt: 
+                            <span style="font-weight: bold; color: green;">"airplane</span>
+                            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
+                            <span style="font-weight: bold; color: orange;">&nbsp;metal shell</span>
+                            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
+                            <span style="font-weight: bold; color: crimson;">&nbsp;{none}"</span>
+                        </p>
+                        <div class="videoWrapper shadow">
+                            <iframe width="560" height="315" border-style=none src="https://www.youtube.com/embed/6Yte9nL2d0k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        
+                        <p style="font-size: 22px; text-align: center;">Tracking prompt: 
+                            <span style="font-weight: bold; color: green;">"helicopter</span>
+                            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
+                            <span style="font-weight: bold; color: orange;">&nbsp;flying; rotor blades</span>
+                            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
+                            <span style="font-weight: bold; color: crimson;">&nbsp;{none}"</span>
+                        </p>
+                        <div class="videoWrapper shadow">
+                            <iframe width="560" height="315" border-style=none src="https://www.youtube.com/embed/Eh5HJUSL9NE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+            </div>
+            <p>
+                We conduct extensive experiments to empirically prove the performance of our proposed Open-GMOT
+                including both detection with Open-CSOD and association with MAC-SORT in the GMOT problem.
+                Our strategy can help bridging the gap between human's intention and computer understanding to provide
+                flexibility in tracking objects with distinctive characteristics follow input texts.
+            </p>
+            
+            <h3 class="results" id="qunatitative">
+                Quantitative Results
+            
+            </h3>
+            <div>
+                <img class="figure" src="media/table1.png" width="100%" alt="Table 1 Result">
+                <p style="font-size: 20px;">
+                    Table 1: <b>Open OD</b> comparison on G-MOT40 between our
+                    <b>Open-CSOD</b> with GLIP, iGLIP, GroundingDINO. The best score is in <b>bold</b>.
+                </p>
+            </div>
+            <div>
+                <img class="figure" src="media/table2.png" width="100%" alt="Table 1 Result">
+                <p style="font-size: 20px;">
+                    Table 2: <b>Tracking</b> comparison on <b>GMOT-40</b> dataset between our <b>MAC-SORT</b> with various trackers using OpenCSOD as object detector. The best performance of each tracker is highlighted in <b>bold</b>.
+                </p>
+            </div>
+            <div>
+                <img class="figure" src="media/table3.png" width="100%" alt="Table 1 Result">
+                <p style="font-size: 20px;">
+                    Table 3: <b>Tracking</b> comparison on <b>AnimalTrack-testset</b> between our <b>Open-CSOD</b> with existing object detectors and our <b>MAC-SORT</b> with other trackers. Faster-RNN and YOLO-X were fully-supervised (F-sup.) trained on AnimalTrack (denoted ‡) and MS-COCO (denoted ∗).
+
+            </div>
+            <div>
+                <img class="figure" src="media/table4.png" width="100%" alt="Table 1 Result">
+                <p style="font-size: 20px;">
+                    Table 4: <b>Tracking</b> performance on <b>DanceTrack-testset</b>. We compare our <b>Open-GMOT</b> with other fully-supervised (Fsup.) MOT trained on DanceTrack-trainset and object detector YOLOX.
+                </p>
+            </div>
+            <div>
+                <img class="figure" src="media/table5.png" width="100%" alt="Table 1 Result">
+                <p style="font-size: 20px;">
+                    Table 5: Ablation study on the impact of each modules in our proposed Open-GMOT. SORT is substitute when MACSORT is not used.
+                </p>
+            </div>
+            
+            
+
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p style="text-align: center;">&copy; Website for AAAI2024's submission</p>
+        </div>
+    </footer>
+</body>

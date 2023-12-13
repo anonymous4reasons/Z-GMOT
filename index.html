@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>
+        Open-GMOT: Open-Vocabulary Generic Multiple Object Tracking with Motion-Appearance Cost (MAC) SORT
+    </title>
+    <meta content="Open-GMOT" property="og:title" />
+    <meta content="A typical pipeline for multi-object tracking (MOT) is to use a detector for object localization, and following re-identification (re-ID) for object association. This pipeline is partially motivated by recent progress in both object detec- tion and re-ID, and partially motivated by biases in existing tracking datasets, where most objects tend to have distin- guishing appearance and re-ID models are sufficient for es- tablishing associations. In response to such bias, we would like to re-emphasize that methods for multi-object tracking should also work when object appearance is not sufficiently discriminative. To this end, we propose a large-scale dataset for multi-human tracking, where humans have similar appearance, diverse motion and extreme articulation. As the dataset contains mostly group dancing videos, we name it “DanceTrack”. We expect DanceTrack to provide a better platform to develop more MOT algorithms that rely less on visual discrimination and depend more on motion analysis. We benchmark several state-of-the-art trackers on our dataset and observe a significant performance drop on DanceTrack when compared against existing benchmarks." name="description" property="og:description" />
+    <meta content="https://github.com/DanceTrack" property="og:url" />
+    <meta name="keywords" content="Generic Multi-Object Tracking in Uniform Appearance and Diverse Motion">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <script defer src="js/fontawesome.all.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <h3>Open-GMOT demo website</h3>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="result.html">Result</a></li>
+            <li><a href="code.html">Code</a></li>
+            <li><a href="dataset.html">Dataset</a></li>
+        </ul>
+        <script>
+            // Get the current URL
+            var currentURL = window.location.href;
+        
+            // Select all navigation links
+            var navLinks = document.querySelectorAll('.navbar a');
+        
+            // Loop through the links to find the active one
+            for (var i = 0; i < navLinks.length; i++) {
+                var linkURL = navLinks[i].href;
+        
+                // Check if the current URL contains the link's URL
+                if (currentURL.indexOf(linkURL) !== -1) {
+                    // Add the "active" class to the link
+                    navLinks[i].classList.add('active');
+                }
+            }
+        </script>
+    </div>
+    
+
+    <div class="n-title">
+        <h1>
+            Open-GMOT: Open-Vocabulary Generic Multiple Object Tracking with Motion-Appearance Cost (MAC) SORT
+        </h1>
+    </div>
+    <div class="n-byline">
+        <div class="byline">
+            <ul class="authors">
+                <li>
+                    This work has been submitted to AAAI 2024
+                </li>
+            </ul>
+            <p style="text-align: center; color: slategray">PDF version will be published soon</p>
+            <!-- <ul class="authors affiliations">
+                <li>
+                    Anonymous
+                </li>
+            </ul> -->
+            <ul class="authors links">
+                <!-- <li>
+                    <a href="" target="_blank">
+                        <button disabled class="btn"><i class="fa fa-file-pdf"></i> Paper</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="" target="_blank">
+                        <button disabled class="btn"><i class="fab fa-github"></i> Code</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="" target="_blank">
+                        <button disabled class="btn"><i class="fab fa-github"></i> Dataset</button>
+                    </a>
+                </li>  -->
+                <li>
+                    <a href="https://www.youtube.com/playlist?list=PLSf1X3oNUW2se2U111HJ3wkSnZ7dcVGC_" target="_blank">
+                        <button class="btn"><i class="fab fa-youtube fa-w-18"></i> Demo</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+<!-- <iframe width="760" height="381" src="https://www.youtube.com/embed/IvxeJRg4rYg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+    
+    <div class="n-article">
+        <div class="n-page video">
+<!--             <video class="centered shadow" width="100%" autoplay muted loop playsinline>
+                <!-- t=0.001 is a hack to make iPhone show video thumbnail -->
+<!--                 <source src="https://www.youtube.com/embed/IvxeJRg4rYg" type="video/mp4" /> -->
+<!--             </video>  -->
+<!--         <h2>
+            Narrated Results Video
+        </h2> --> 
+        <p style="font-size: 22px; text-align: center;">Tracking prompt: 
+            <span style="font-weight: bold; color: green;">"plane</span>
+            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
+            <span style="font-weight: bold; color: orange;">&nbsp;grey body</span>
+            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
+            <span style="font-weight: bold;  color: crimson;">&nbsp;{none}"</span>
+        </p>
+        <div class="videoWrapper shadow">
+            <iframe width="560" height="315" border-style=none src="https://www.youtube.com/embed/PPI6ewcAEuA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+        <!-- <p style="font-size: 22px; text-align: center;">Tracking prompt: 
+            <span style="font-weight: bold; color: green;">"airplane</span>
+            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
+            <span style="font-weight: bold; color: orange;">&nbsp;metal shell</span>
+            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
+            <span style="font-weight: bold; color: crimson;">&nbsp;{none}"</span>
+        </p>
+        <div class="videoWrapper shadow">
+            <iframe width="560" height="315" border-style=none src="https://www.youtube.com/embed/6Yte9nL2d0k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <p style="font-size: 22px; text-align: center;">Tracking prompt: 
+            <span style="font-weight: bold; color: green;">"helicopter</span>
+            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
+            <span style="font-weight: bold; color: orange;">&nbsp;flying; rotor blades</span>
+            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
+            <span style="font-weight: bold; color: crimson;">&nbsp;{none}"</span>
+        </p>
+        <div class="videoWrapper shadow">
+            <iframe width="560" height="315" border-style=none src="https://www.youtube.com/embed/Eh5HJUSL9NE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> -->
+            
+            <div class="videocaption" style="margin-bottom: 1rem">
+                <div>
+                    Demo of our Tracking framework for Generic Object scenario.
+                </div>   
+            </div>
+        </div>
+
+        <h2 id="introduction">
+            Introduction
+        </h2>
+        <p>
+            In this paper, we introduce a novel Open-Vocabulary GMOT, called <b>Open-GMOT</b>, which can track never-seen object categories with zero training examples. Our Open-GMOT encompasses two main contributions, addressing both the object detection and object association stages. In the first stage, we introduce <b>Open-CSOD</b> (Open-Vocabulary Characteristic-Specific Object Detection), a pioneering method for detecting unseen objects of a generic type. In the second stage, we propose <b>MAC-SORT</b> (Motion-Appearance Cost SORT), an inventive tracking algorithm that seamlessly integrates visual appearance with motion-based matching.
+        </p>
+        <div>
+            <img class="figure" src="media/Fig1.png" width="100%" alt="Pipeline Overview">
+        </div>
+
+
+        <!-- <h2 id="rebuttal-aaai">
+            Rebuttal Section
+        </h2>
+        <div class="chat-container">
+            <div class="recipient-message">
+                <strong>Reviewer #1:</strong> Hello, how are you today?
+            </div>
+    
+            <div class="sender-message">
+                <strong>Answer:</strong> I'm doing well, thank you! How can I help you?
+            </div>
+            <br>
+    
+            <div class="recipient-message">
+                <strong>Reviewer #2:</strong> I have a question about your product.
+            </div>
+    
+            <div class="sender-message">
+                <strong>Answer:</strong> Sure, I'd be happy to help. What's your question?
+            </div>
+            <br>
+        </div>
+        <p> </p> -->
+        
+        <!------------------------------------------------------Section Boundary-------------------------------------------------->
+        <h2 id="method">
+            Methodology
+        </h2>
+        <p style="font-size: 22px;">
+            <b>Open-CSOD</b>: To address these limitations of pre-trained VL models, our Open-CSOD comprises two modules as follows:
+        </p>
+        <p>
+            <b><u><span style="font-size: 20px;">Module 1:</span></u></b> Include/Exclude Whole-Part (IE-WP) Strategy: To precisely depict the characteristics of a generic attribute
+        within a category, while excluding others that may belong to the same category but possess distinct traits, we introduce
+        a novel strategy. This strategy involves structuring the prompt using the format of IE-WP, as shown:
+        </p>
+        <p style="font-size: 20px; text-align: center;">
+            <span style="font-family: 'Courier New', monospace; font-weight: bold; color: green;">&lt;attribute.object&gt;</span>
+            &nbsp;include&nbsp;  <span style="font-family: 'Courier New', monospace; font-weight: bold; color: orange;">&lt;attribute.part&gt;</span>
+            &nbsp;exclude&nbsp;  <span style="font-family: 'Courier New', monospace; font-weight: bold; color: crimson;">&lt;attribute.part&gt;</span>
+        </p>
+        <div class="image-container">
+            <div class="image-content">
+                <img src="media/opencsod1.png" alt="Image 1" style="width:100%">
+                <p style="font-size: 20px; text-align: center;">Tracking prompt: 
+                    <span style="font-weight: bold; color: green;">"ball</span>
+                    <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
+                    <span style="font-weight: bold; color: orange;">&nbsp;red ball</span>
+                    <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
+                    <span style="font-weight: bold;  color: crimson;">&nbsp;yellow, green, black, white ball"</span>
+                </p>
+            </div>
+            <div class="image-content">
+                <img src="media/opencsod2.png" alt="Image 2" style="width:100%">
+                <p style="font-size: 20px; text-align: center;">Tracking prompt: 
+                    <span style="font-weight: bold; color: green;">"duck</span>
+                    <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
+                    <span style="font-weight: bold; color: orange;">&nbsp;small body</span>
+                    <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
+                    <span style="font-weight: bold;  color: crimson;">&nbsp;big duck, white tail feather"</span>
+                </p>
+            </div>
+            <div class="image-content">
+                <img src="media/opencsod3.png" alt="Image 2" style="width:100%">
+                <p style="font-size: 20px; text-align: center;">Tracking prompt: 
+                    <span style="font-weight: bold; color: green;">"person</span>
+                    <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
+                    <span style="font-weight: bold; color: orange;">&nbsp;on stage, black suit</span>
+                </p>
+            </div>
+            <!-- Add more images with captions as needed -->
+        </div>
+
+        <p>
+            <b><u><span style="font-size: 20px;">Module 2:</span></u></b> Long-Short Memory (LSM) Mechanism: To mitigate False Positive
+            (FP) arisingfrom challenges like pose, illumination, and occlusion, we propose a LSM mechanism.
+        </p>
+        <div>
+            <img class="figure" src="media/open-gmot.jpg" width="100%" alt="Pipeline Overview">
+        </div>
+        <p style="font-size: 22px;">
+            <b>MAC-SORT</b>: We introduce MAC-SORT, as an enhancement of OC-SORT, which itself extends the SORT
+        </p>
+        <p>
+            The standard similarity between track and box embeddings is defined using cosine distance, denoted as <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝐂<sub>𝑎</sub> ∈ ℜ<sup>𝑀×𝑁</sup></span>. In a typical tracking approach that combines visual appearance and motion cues, the cost matrix <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝐶</span> is computed as <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝐶(𝒯, 𝒟) = 𝑀<sub>c</sub>(𝒯, 𝒟) + 𝛼 𝐶<sub>𝑎</sub>(𝒯, 𝒟)</span>, where <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝑀<sub>c</sub></span> represents the motion cost, measured by the IoU cost matrix. Leveraging OC-SORT, which computes a virtual trajectory over the occlusion period to rectify the error accumulation of filter parameters during occlusions, the motion cost is defined as <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝑀<sub>c</sub>(𝒯, 𝒟) = IoU(𝒯, 𝒟) + 𝜆 𝐶<sub>𝑣</sub>(𝜏, 𝒯)</span>. Thus, the resulting cost matrix integrating both visual appearance and motion is as follows:
+        </p>
+          
+        <figure>
+          <p style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold; text-align: center;">
+            𝐶(𝒯, 𝒟) = IoU(𝒯, 𝒟) + 𝜆 C<sub>𝑣</sub>(𝜏, 𝒯) + 𝛼 C<sub>𝑎</sub>(𝒯, 𝒟)
+          </p>
+          <figcaption style="text-align: center;">(Equation 1)</figcaption>
+        </figure>
+        <p>
+          As the weight on appearance decreases, we propose redistributing the remaining weight to motion. Thus, the adaptive motion weight 
+          <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝑊<sub>amw</sub></span> is defined as:
+        </p>
+        
+        <figure>
+          <p style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold; text-align: center;">
+            𝑊<sub>amw</sub> = 1 + [1 - 𝑊<sub>aaw</sub>] = 2 - [1 - 𝜇<sub>det</sub> / (1 - cos(45°))]
+          </p>
+          <figcaption style="text-align: center;">(Equation 2)</figcaption>
+        </figure>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p style="text-align: center;">&copy; Website for AAAI2024's submission</p>
+        </div>
+    </footer>
+</body>
+
+</html>
+    
+                   
