@@ -7,7 +7,7 @@
     <title>
         Z-GMOT with MA-SORT: Zero-shot Generic Multiple Object Tracking (GMOT) with Motion Appearance SORT (MA-SORT)
     </title>
-    <meta content="Open-GMOT" property="og:title" />
+    <meta content="Z-GMOT" property="og:title" />
     <meta content="A typical pipeline for multi-object tracking (MOT) is to use a detector for object localization, and following re-identification (re-ID) for object association. This pipeline is partially motivated by recent progress in both object detec- tion and re-ID, and partially motivated by biases in existing tracking datasets, where most objects tend to have distin- guishing appearance and re-ID models are sufficient for es- tablishing associations. In response to such bias, we would like to re-emphasize that methods for multi-object tracking should also work when object appearance is not sufficiently discriminative. To this end, we propose a large-scale dataset for multi-human tracking, where humans have similar appearance, diverse motion and extreme articulation. As the dataset contains mostly group dancing videos, we name it “DanceTrack”. We expect DanceTrack to provide a better platform to develop more MOT algorithms that rely less on visual discrimination and depend more on motion analysis. We benchmark several state-of-the-art trackers on our dataset and observe a significant performance drop on DanceTrack when compared against existing benchmarks." name="description" property="og:description" />
     <meta content="https://github.com/DanceTrack" property="og:url" />
     <meta name="keywords" content="Generic Multi-Object Tracking in Uniform Appearance and Diverse Motion">
@@ -218,11 +218,11 @@
         <p>To address the limitation of GLIP's deep fusion module not paying attention to specific properties, we propose a <strong style="font-family: 'Times New Roman', Times, serif;">Query-Guided Matching</strong> mechanism to filter false positives from the general object category set <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>t</sub></span>. Specifically, we use the TP obtained by the specific prompt as template patterns <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>q</sub></span> and query back on <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>t</sub></span> to find objects with similar visual properties. To perform the matching, we propose to utilize only visual features <span style="font-family: 'Times New Roman', Times, serif;">𝑂<sup>0</sup></span> extracted from the backbone (without the influence of text embeddings).</p>
 
         <p>Let <span style="font-family: 'Times New Roman', Times, serif;">𝑂<sup>0</sup><sub>t</sub></span> and <span style="font-family: 'Times New Roman', Times, serif;">𝑂<sup>0</sup><sub>q</sub></span> represent the visual features of object proposals in <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>t</sub></span> and <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>q</sub></span>, the matching score is defined as the cosine similarity:</p>
-            
+
         <blockquote>
             <p><span style="font-family: 'Times New Roman', Times, serif;">S<sub>qt</sub> = cos(𝑂<sup>0</sup><sub>q</sub> &middot; (𝑂<sup>0</sup><sub>t</sub>)<sup>T</sup>)</span></p>
         </blockquote>
-        
+
         <p>The final detection results comprise the query objects and candidate objects with high similarity.</p>
 
 

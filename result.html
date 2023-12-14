@@ -7,7 +7,7 @@
     <title>
         Z-GMOT with MA-SORT: Zero-shot Generic Multiple Object Tracking (GMOT) with Motion Appearance SORT (MA-SORT)
     </title>
-    <meta content="Open-GMOT" property="og:title" />
+    <meta content="Z-GMOT" property="og:title" />
     <meta content="A typical pipeline for multi-object tracking (MOT) is to use a detector for object localization, and following re-identification (re-ID) for object association. This pipeline is partially motivated by recent progress in both object detec- tion and re-ID, and partially motivated by biases in existing tracking datasets, where most objects tend to have distin- guishing appearance and re-ID models are sufficient for es- tablishing associations. In response to such bias, we would like to re-emphasize that methods for multi-object tracking should also work when object appearance is not sufficiently discriminative. To this end, we propose a large-scale dataset for multi-human tracking, where humans have similar appearance, diverse motion and extreme articulation. As the dataset contains mostly group dancing videos, we name it “DanceTrack”. We expect DanceTrack to provide a better platform to develop more MOT algorithms that rely less on visual discrimination and depend more on motion analysis. We benchmark several state-of-the-art trackers on our dataset and observe a significant performance drop on DanceTrack when compared against existing benchmarks." name="description" property="og:description" />
     <meta content="https://github.com/DanceTrack" property="og:url" />
     <meta name="keywords" content="Generic Multi-Object Tracking in Uniform Appearance and Diverse Motion">
@@ -50,7 +50,7 @@
 
     <div class="n-article">
             <p>
-                We conduct extensive experiments to empirically prove the performance of our proposed Open-GMOT
+                We conduct extensive experiments to empirically prove the performance of our proposed Z-GMOT
                 including both detection with Open-CSOD and association with MAC-SORT in the GMOT problem.
                 Our strategy can help bridging the gap between human's intention and computer understanding to provide
                 flexibility in tracking objects with distinctive characteristics follow input texts.
@@ -82,13 +82,13 @@
             <div>
                 <img class="figure" src="media/table4.png" width="100%" alt="Table 1 Result">
                 <p style="font-size: 20px;">
-                    Table 4: <b>Tracking</b> performance on <b>DanceTrack-testset</b>. We compare our <b>Open-GMOT</b> with other fully-supervised (Fsup.) MOT trained on DanceTrack-trainset and object detector YOLOX.
+                    Table 4: <b>Tracking</b> performance on <b>DanceTrack-testset</b>. We compare our <b>Z-GMOT</b> with other fully-supervised (Fsup.) MOT trained on DanceTrack-trainset and object detector YOLOX.
                 </p>
             </div>
             <div>
                 <img class="figure" src="media/table5.png" width="100%" alt="Table 1 Result">
                 <p style="font-size: 20px;">
-                    Table 5: Ablation study on the impact of each modules in our proposed Open-GMOT. SORT is substitute when MACSORT is not used.
+                    Table 5: Ablation study on the impact of each modules in our proposed Z-GMOT. SORT is substitute when MACSORT is not used.
                 </p>
             </div>
             
