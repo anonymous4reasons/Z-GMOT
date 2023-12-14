@@ -51,7 +51,7 @@
 
     <div class="n-title">
         <h1>
-            Open-GMOT: Open-Vocabulary Generic Multiple Object Tracking with Motion-Appearance Cost (MAC) SORT
+            Z-GMOT with MA-SORT: Zero-shot Generic Multiple Object Tracking (GMOT) with Motion Appearance SORT (MA-SORT)
         </h1>
     </div>
     <div class="n-byline">
@@ -83,11 +83,11 @@
                         <button disabled class="btn"><i class="fab fa-github"></i> Dataset</button>
                     </a>
                 </li>  -->
-                <li>
+                <!-- <li>
                     <a href="https://www.youtube.com/playlist?list=PLSf1X3oNUW2se2U111HJ3wkSnZ7dcVGC_" target="_blank">
                         <button class="btn"><i class="fab fa-youtube fa-w-18"></i> Demo</button>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>
@@ -95,59 +95,12 @@
 <!-- <iframe width="760" height="381" src="https://www.youtube.com/embed/IvxeJRg4rYg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
     
     <div class="n-article">
-        <div class="n-page video">
-<!--             <video class="centered shadow" width="100%" autoplay muted loop playsinline>
-                <!-- t=0.001 is a hack to make iPhone show video thumbnail -->
-<!--                 <source src="https://www.youtube.com/embed/IvxeJRg4rYg" type="video/mp4" /> -->
-<!--             </video>  -->
-<!--         <h2>
-            Narrated Results Video
-        </h2> --> 
-        <p style="font-size: 22px; text-align: center;">Tracking prompt: 
-            <span style="font-weight: bold; color: green;">"plane</span>
-            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
-            <span style="font-weight: bold; color: orange;">&nbsp;grey body</span>
-            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
-            <span style="font-weight: bold;  color: crimson;">&nbsp;{none}"</span>
-        </p>
-        <div class="videoWrapper shadow">
-            <iframe width="560" height="315" border-style=none src="https://www.youtube.com/embed/PPI6ewcAEuA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        
-        <!-- <p style="font-size: 22px; text-align: center;">Tracking prompt: 
-            <span style="font-weight: bold; color: green;">"airplane</span>
-            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
-            <span style="font-weight: bold; color: orange;">&nbsp;metal shell</span>
-            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
-            <span style="font-weight: bold; color: crimson;">&nbsp;{none}"</span>
-        </p>
-        <div class="videoWrapper shadow">
-            <iframe width="560" height="315" border-style=none src="https://www.youtube.com/embed/6Yte9nL2d0k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <p style="font-size: 22px; text-align: center;">Tracking prompt: 
-            <span style="font-weight: bold; color: green;">"helicopter</span>
-            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
-            <span style="font-weight: bold; color: orange;">&nbsp;flying; rotor blades</span>
-            <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
-            <span style="font-weight: bold; color: crimson;">&nbsp;{none}"</span>
-        </p>
-        <div class="videoWrapper shadow">
-            <iframe width="560" height="315" border-style=none src="https://www.youtube.com/embed/Eh5HJUSL9NE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div> -->
-            
-            <div class="videocaption" style="margin-bottom: 1rem">
-                <div>
-                    Demo of our Tracking framework for Generic Object scenario.
-                </div>   
-            </div>
-        </div>
 
         <h2 id="introduction">
             Introduction
         </h2>
         <p>
-            In this paper, we introduce a novel Open-Vocabulary GMOT, called <b>Open-GMOT</b>, which can track never-seen object categories with zero training examples. Our Open-GMOT encompasses two main contributions, addressing both the object detection and object association stages. In the first stage, we introduce <b>Open-CSOD</b> (Open-Vocabulary Characteristic-Specific Object Detection), a pioneering method for detecting unseen objects of a generic type. In the second stage, we propose <b>MAC-SORT</b> (Motion-Appearance Cost SORT), an inventive tracking algorithm that seamlessly integrates visual appearance with motion-based matching.
+            Despite recent significant progress, Multi-Object Tracking (MOT) faces limitations such as reliance on prior knowledge and predefined categories, and struggles with unseen objects. To address this, Generic Multiple Object Tracking (GMOT) requires less prior information, but existing GMOT methods rely on initial bounding boxes and struggle with variations e.g., viewpoint, lighting, occlusion, scale, etc. We propose <b>Z-GMOT</b>, capable of tracking never-seen categories with no training examples, without predefined categories or initial bounding boxes. Our approach includes <b>iGLIP</b>, an improved Grounded language-image pretraining, for accurately detecting unseen objects with specific characteristics. Addressing challenges in tracking high-similarity objects within the same category, we introduce <b>MA-SORT</b>, which integrates motion and appearance-based matching. Extensive evaluation on GMOT-40 dataset, AnimalTrack test set, DanceTrack validation set demonstrates substantial improvements. Our code and models will be publicly available upon paper acceptance.
         </p>
         <div>
             <img class="figure" src="media/Fig1.png" width="100%" alt="Pipeline Overview">
@@ -183,59 +136,89 @@
             Methodology
         </h2>
         <p style="font-size: 22px;">
-            <b>Open-CSOD</b>: To address these limitations of pre-trained VL models, our Open-CSOD comprises two modules as follows:
+            <b>Limitations</b>: We empirically observe several limitations of GLIP as follows:
         </p>
         <p>
-            <b><u><span style="font-size: 20px;">Module 1:</span></u></b> Include/Exclude Whole-Part (IE-WP) Strategy: To precisely depict the characteristics of a generic attribute
-        within a category, while excluding others that may belong to the same category but possess distinct traits, we introduce
-        a novel strategy. This strategy involves structuring the prompt using the format of IE-WP, as shown:
+            <b><u><span style="font-size: 20px;">Limitation 1 - High False Positives:</span></u></b> GLIP demonstrates reliable performance for the general object category (<sup>OC<sup>Gen</sup></sup>); 
+            however, it struggles to handle specific object categories (<sup>OC<sup>Spe</sup></sup>) with property descriptions, such as color 
+            or shape. As shown in Figure 1, when various thresholds <i>t</i> are applied, the outcomes of GLIP's detection model for 
+            <sup>OC<sup>Gen</sup></sup> prompt (e.g., <em>'car'</em>) remain relatively stable. In contrast, for the <sup>OC<sup>Spe</sup></sup> prompt (e.g., <em>'red car'</em>), 
+            the detected bounding boxes exhibit high variability, with true positives (TP) missing at high thresholds and false positives (FP) present at low thresholds. The trade-off 
+            between high TP and low FP makes it difficult to achieve optimal performance.
         </p>
-        <p style="font-size: 20px; text-align: center;">
-            <span style="font-family: 'Courier New', monospace; font-weight: bold; color: green;">&lt;attribute.object&gt;</span>
-            &nbsp;include&nbsp;  <span style="font-family: 'Courier New', monospace; font-weight: bold; color: orange;">&lt;attribute.part&gt;</span>
-            &nbsp;exclude&nbsp;  <span style="font-family: 'Courier New', monospace; font-weight: bold; color: crimson;">&lt;attribute.part&gt;</span>
-        </p>
-        <div class="image-container">
-            <div class="image-content">
-                <img src="media/opencsod1.png" alt="Image 1" style="width:100%">
-                <p style="font-size: 20px; text-align: center;">Tracking prompt: 
-                    <span style="font-weight: bold; color: green;">"ball</span>
-                    <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
-                    <span style="font-weight: bold; color: orange;">&nbsp;red ball</span>
-                    <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
-                    <span style="font-weight: bold;  color: crimson;">&nbsp;yellow, green, black, white ball"</span>
-                </p>
-            </div>
-            <div class="image-content">
-                <img src="media/opencsod2.png" alt="Image 2" style="width:100%">
-                <p style="font-size: 20px; text-align: center;">Tracking prompt: 
-                    <span style="font-weight: bold; color: green;">"duck</span>
-                    <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
-                    <span style="font-weight: bold; color: orange;">&nbsp;small body</span>
-                    <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;exclude&gt;</span>
-                    <span style="font-weight: bold;  color: crimson;">&nbsp;big duck, white tail feather"</span>
-                </p>
-            </div>
-            <div class="image-content">
-                <img src="media/opencsod3.png" alt="Image 2" style="width:100%">
-                <p style="font-size: 20px; text-align: center;">Tracking prompt: 
-                    <span style="font-weight: bold; color: green;">"person</span>
-                    <span style="font-family: 'Courier New', monospace; font-weight: bold;">&nbsp;&lt;include&gt;</span>
-                    <span style="font-weight: bold; color: orange;">&nbsp;on stage, black suit</span>
-                </p>
-            </div>
-            <!-- Add more images with captions as needed -->
+        <div>
+            <img class="figure" src="media/limit1.png" width="100%" alt="Limitation 1">
         </div>
 
         <p>
-            <b><u><span style="font-size: 20px;">Module 2:</span></u></b> Long-Short Memory (LSM) Mechanism: To mitigate False Positive
-            (FP) arisingfrom challenges like pose, illumination, and occlusion, we propose a LSM mechanism.
+            <b><u><span style="font-size: 20px;">Limitation 2 - Deep fusion in GLIP weakens proposal features when dealing with specific object category:</span></u></b> 
+            The role of text embedding is critical in GLIP, as it has a significant impact on both token and proposal features. 
+            The token features <span>${P^i}$</span> and proposal features <span>${O^i}$</span> are fused through a deep fusion module, 
+            and thus the text embedding continues to influence proposal features throughout this module. In Fig. 2, we visualize the impact of 
+            the text embedding on GLIP's performance with the same threshold <i>t</i> for two cases of <sup>OC<sup>Gen</sup></sup> (i.e. 'car') 
+            and <sup>OC<sup>Spe</sup></sup> (i.e., 'red car'). While we obtain similar results on <sup>OC<sup>Gen</sup></sup>, the performance 
+            of GLIP is not reliable in the case of <sup>OC<sup>Spe</sup></sup>, even at the same threshold. Our empirical experiments suggest 
+            that the text embedding may either strengthen (in the case of <sup>OC<sup>Gen</sup></sup>) or weaken (in the case of <sup>OC<sup>Spe</sup></sup>) proposal features, 
+            despite the presence of strong visual feature
         </p>
         <div>
-            <img class="figure" src="media/open-gmot.jpg" width="100%" alt="Pipeline Overview">
+            <img class="figure" src="media/limti2.png" width="100%" alt="Limitation 2">
         </div>
         <p style="font-size: 22px;">
-            <b>MAC-SORT</b>: We introduce MAC-SORT, as an enhancement of OC-SORT, which itself extends the SORT
+            <b>iGLIP</b>: In order to overcome the limitations of GLIP as discussed earlier, we propose iGLIP.
+        </p>
+        <p>To address <i>Limitation 1</i>, we propose a strategy where a <strong>high threshold 
+            <span style="font-family: 'Times New Roman', Times, serif;">𝒯</span><sup>h</sup></strong> is used for 
+            <sup>OC<sup>Spe</sup></sup> and a <strong>low threshold <span style="font-family: 'Times New Roman', Times, serif;">𝒯</span><sup>l</sup></strong> 
+            for <sup>OC<sup>Gen</sup></sup>. This way, only TP (no FP) are detected in <sup>OC<sup>Spe</sup></sup>, while allowing for the 
+            acceptance of FP in the <sup>OC<sup>Gen</sup></sup>. The proposals from <sup>OC<sup>Spe</sup></sup> are treated as queries, and 
+            a <strong>Query-Guided Matching</strong> mechanism is proposed to filter all FP proposals from <sup>OC<sup>Gen</sup></sup>. 
+            Moreover, to address <i>Limitation 2</i>, we propose to utilize the rich visual features obtained from the backbone 
+            <span style="font-family: 'Times New Roman', Times, serif;">O<sup>0</sup></span> instead of the last layer feature 
+            <span style="font-family: 'Times New Roman', Times, serif;">O<sup>L</sup></span> in our Query-Guided Matching. The overall 
+            architecture of our proposed iGLIP is illustrated in Fig. 2 (B).</p>
+
+        <p>iGLIP takes an input image <span style="font-family: 'Times New Roman', Times, serif;">I</span> and two kinds of prompts, namely, the specific prompt (<span style="font-family: 'Times New Roman', Times, serif;">𝑇<sub>s</sub></span>) and the general prompt (<span style="font-family: 'Times New Roman', Times, serif;">𝑇<sub>g</sub></span>). Both kinds of prompts go through a text encoder, i.e., BERTModule, to obtain contextual word features (i.e., <span style="font-family: 'Times New Roman', Times, serif;">P<sub>s</sub><sup>0</sup></span> and <span style="font-family: 'Times New Roman', Times, serif;">P<sub>g</sub><sup>0</sup></span>). Meanwhile, the input image goes through a visual encoder, i.e., DyHeadModule, to obtain proposal features (i.e., <span style="font-family: 'Times New Roman', Times, serif;">O<sup>0</sup></span>). Then, <span style="font-family: 'Times New Roman', Times, serif;">L</span> deep fusion layers are applied into <span style="font-family: 'Times New Roman', Times, serif;">P<sub>s</sub><sup>0</sup></span>, <span style="font-family: 'Times New Roman', Times, serif;">P<sub>g</sub><sup>0</sup></span>, and <span style="font-family: 'Times New Roman', Times, serif;">O<sup>0</sup></span>. Finally, the word-region alignment module is utilized to calculate the alignment score by performing a dot product between the deep fused features.</p>
+
+        <p>where <span style="font-family: 'Times New Roman', Times, serif;">O<sub>s</sub></span> = <span style="font-family: 'Times New Roman', Times, serif;">O<sup>L</sup></span> 
+            in <span style="font-family: 'Times New Roman', Times, serif;">ℝ<sup>N×d</sup></span>, <span style="font-family: 'Times New Roman', Times, serif;">O<sub>g</sub></span> = 
+            <span style="font-family: 'Times New Roman', Times, serif;">O<sup>L</sup></span> in <span style="font-family: 'Times New Roman', Times, serif;">ℝ<sup>N×d</sup></span> 
+            are the visual features from the last visual encoder layer and <span style="font-family: 'Times New Roman', Times, serif;">P<sub>s</sub></span> = 
+            <span style="font-family: 'Times New Roman', Times, serif;">P<sup>L</sup><sub>s</sub></span> in <span style="font-family: 'Times New Roman', Times, serif;">ℝ<sup>M×d</sup></span>, 
+            <span style="font-family: 'Times New Roman', Times, serif;">P<sub>g</sub></span> = <span style="font-family: 'Times New Roman', Times, serif;">P<sup>L</sup><sub>g</sub></span> in 
+            <span style="font-family: 'Times New Roman', Times, serif;">ℝ<sup>M×d</sup></span> are the word features of <sup>OC<sup>Spe</sup></sup> and <sup>OC<sup>Gen</sup></sup> from the last language encoder layer. 
+            The result of this operation are matrices <span style="font-family: 'Times New Roman', Times, serif;">S<sub>s</sub><sup>align</sup></span> in <span style="font-family: 'Times New Roman', Times, serif;">ℝ<sup>N×M</sup></span>, 
+            <span style="font-family: 'Times New Roman', Times, serif;">S<sub>g</sub><sup>align</sup></span> in <span style="font-family: 'Times New Roman', Times, serif;">ℝ<sup>N×M</sup></span>. 
+            Each element <span style="font-family: 'Times New Roman', Times, serif;">S<sub>s</sub><sup>align</sup>(i,j)</span> represents the alignment score between the 
+            <span style="font-family: 'Times New Roman', Times, serif;">i</span>-th proposal region and <sup>OC<sup>Spe</sup></sup>. Each element 
+            <span style="font-family: 'Times New Roman', Times, serif;">S<sub>g</sub><sup>align</sup>(i,j)</span> represents the alignment score between the 
+            <span style="font-family: 'Times New Roman', Times, serif;">i</span>-th proposal region and <sup>OC<sup>Gen</sup></sup>.
+        </p>
+
+        <p>The resulting bounding boxes are filtered by different thresholds, where a <strong>high threshold <span style="font-family: 'Times New Roman', Times, serif;">𝒯</span><sup>h</sup></strong> 
+            is applied into <span style="font-family: 'Times New Roman', Times, serif;">S<sub>s</sub><sup>align</sup></span> to ensure only TP are detected, and 
+            a <strong>low threshold <span style="font-family: 'Times New Roman', Times, serif;">𝒯</span><sup>l</sup></strong> is applied into 
+            <span style="font-family: 'Times New Roman', Times, serif;">S<sub>g</sub><sup>align</sup></span> to include all objects proposals, 
+            which may include FP. All the TP obtained by <span style="font-family: 'Times New Roman', Times, serif;">S<sub>s</sub><sup>align</sup></span> 
+            are treated as a queries set <span style="font-family: 'Times New Roman', Times, serif;">𝒬<sub>q</sub></span> (i.e., template patterns), 
+            while all bounding boxes obtained by <span style="font-family: 'Times New Roman', Times, serif;">S<sub>g</sub><sup>align</sup></span> form the 
+            target set <span style="font-family: 'Times New Roman', Times, serif;">𝒬<sub>t</sub></span>. <i>Query-Guided Matching</i> module is then proposed to 
+            eliminate FP in <span style="font-family: 'Times New Roman', Times, serif;">𝒬<sub>t</sub></span> by using <span style="font-family: 'Times New Roman', Times, serif;">𝒬<sub>q</sub></span> 
+            as template patterns.
+        </p>
+
+        <div>
+            <img class="figure" src="media/glip-iglip.png" width="100%" alt="Limitation 1">
+        </div>
+
+        <p>
+            <b><u><span style="font-size: 20px;">Query-Guided Matching:</span></u></b>
+        </p>
+        
+
+
+        <p style="font-size: 22px;">
+            <b>MA-SORT</b>: We introduce MA-SORT, as an enhancement of OC-SORT, which itself extends the SORT
         </p>
         <p>
             The standard similarity between track and box embeddings is defined using cosine distance, denoted as <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝐂<sub>𝑎</sub> ∈ ℜ<sup>𝑀×𝑁</sup></span>. In a typical tracking approach that combines visual appearance and motion cues, the cost matrix <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝐶</span> is computed as <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝐶(𝒯, 𝒟) = 𝑀<sub>c</sub>(𝒯, 𝒟) + 𝛼 𝐶<sub>𝑎</sub>(𝒯, 𝒟)</span>, where <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝑀<sub>c</sub></span> represents the motion cost, measured by the IoU cost matrix. Leveraging OC-SORT, which computes a virtual trajectory over the occlusion period to rectify the error accumulation of filter parameters during occlusions, the motion cost is defined as <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝑀<sub>c</sub>(𝒯, 𝒟) = IoU(𝒯, 𝒟) + 𝜆 𝐶<sub>𝑣</sub>(𝜏, 𝒯)</span>. Thus, the resulting cost matrix integrating both visual appearance and motion is as follows:
@@ -262,7 +245,7 @@
 
     <footer>
         <div class="footer-content">
-            <p style="text-align: center;">&copy; Website for AAAI2024's submission</p>
+            <p style="text-align: center;">&copy; Website for NAACL24's submission</p>
         </div>
     </footer>
 </body>
