@@ -562,6 +562,10 @@ h3.results {
     margin: 5px 0;
 }
 
+code {
+    font-family: 'Times New Roman', Times, serif;
+}
+
 /* Style for the footer links */
 footer {
     background-color: #333;

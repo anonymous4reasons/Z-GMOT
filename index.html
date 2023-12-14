@@ -167,7 +167,7 @@
             despite the presence of strong visual features.
         </p>
         <div>
-            <img class="figure" src="media/limti2.png" width="100%" alt="Limitation 2">
+            <img class="figure" src="media/limit2.png" width="100%" alt="Limitation 2">
         </div>
 
         <h2 id="method">
@@ -176,45 +176,13 @@
         <p style="font-size: 22px;">
             <b>iGLIP</b>: In order to overcome the limitations of GLIP as discussed earlier, we propose iGLIP.
         </p>
-        <p>To address <i>Limitation 1</i>, we propose a strategy where a <strong>high threshold 
-            <span style="font-family: 'Times New Roman', Times, serif;">𝒯</span><sup>h</sup></strong> is used for 
-            <sup>OC<sup>Spe</sup></sup> and a <strong>low threshold <span style="font-family: 'Times New Roman', Times, serif;">𝒯</span><sup>l</sup></strong> 
-            for <sup>OC<sup>Gen</sup></sup>. This way, only TP (no FP) are detected in <sup>OC<sup>Spe</sup></sup>, while allowing for the 
-            acceptance of FP in the <sup>OC<sup>Gen</sup></sup>. The proposals from <sup>OC<sup>Spe</sup></sup> are treated as queries, and 
-            a <strong>Query-Guided Matching</strong> mechanism is proposed to filter all FP proposals from <sup>OC<sup>Gen</sup></sup>. 
-            Moreover, to address <i>Limitation 2</i>, we propose to utilize the rich visual features obtained from the backbone 
-            <span style="font-family: 'Times New Roman', Times, serif;">O<sup>0</sup></span> instead of the last layer feature 
-            <span style="font-family: 'Times New Roman', Times, serif;">O<sup>L</sup></span> in our Query-Guided Matching. The overall 
-            architecture of our proposed iGLIP is illustrated in Fig. 2 (B).</p>
+        <p>To overcome a specific limitation (referred to as Limitation 1), we suggest a solution where we use a <strong>high threshold <code>𝒯<sup>h</sup></code></strong> for recognizing specific objects (<sup>OC<sup>Spe</sup></sup>) and a <strong>low threshold <code>𝒯<sup>l</sup></code></strong> for general objects (<sup>OC<sup>Gen</sup></sup>). This approach ensures that only true positives (correctly identified objects) are detected for specific objects, while allowing for the acceptance of false positives in the case of general objects. Proposals from specific objects are treated as queries, and we introduce a mechanism called <strong>Query-Guided Matching</strong> to filter out all false positive proposals from general objects.</p>
 
-        <p>iGLIP takes an input image <span style="font-family: 'Times New Roman', Times, serif;">I</span> and two kinds of prompts, namely, the specific prompt (<span style="font-family: 'Times New Roman', Times, serif;">𝑇<sub>s</sub></span>) and the general prompt (<span style="font-family: 'Times New Roman', Times, serif;">𝑇<sub>g</sub></span>). Both kinds of prompts go through a text encoder, i.e., BERTModule, to obtain contextual word features (i.e., <span style="font-family: 'Times New Roman', Times, serif;">P<sub>s</sub><sup>0</sup></span> and <span style="font-family: 'Times New Roman', Times, serif;">P<sub>g</sub><sup>0</sup></span>). Meanwhile, the input image goes through a visual encoder, i.e., DyHeadModule, to obtain proposal features (i.e., <span style="font-family: 'Times New Roman', Times, serif;">O<sup>0</sup></span>). Then, <span style="font-family: 'Times New Roman', Times, serif;">L</span> deep fusion layers are applied into <span style="font-family: 'Times New Roman', Times, serif;">P<sub>s</sub><sup>0</sup></span>, <span style="font-family: 'Times New Roman', Times, serif;">P<sub>g</sub><sup>0</sup></span>, and <span style="font-family: 'Times New Roman', Times, serif;">O<sup>0</sup></span>. Finally, the word-region alignment module is utilized to calculate the alignment score by performing a dot product between the deep fused features.</p>
+        <p>Additionally, to address another limitation (Limitation 2), we propose using rich visual features obtained from the initial visual encoder layer (<code>O<sup>0</sup></code>) instead of the last layer feature (<code>O<sup>L</sup></code>) in our Query-Guided Matching process. The overall architecture of our proposed <em>iGLIP</em> is illustrated in Figure 2 (B).</p>
 
-        <p>where <span style="font-family: 'Times New Roman', Times, serif;">O<sub>s</sub></span> = <span style="font-family: 'Times New Roman', Times, serif;">O<sup>L</sup></span> 
-            in <span style="font-family: 'Times New Roman', Times, serif;">ℝ<sup>N×d</sup></span>, <span style="font-family: 'Times New Roman', Times, serif;">O<sub>g</sub></span> = 
-            <span style="font-family: 'Times New Roman', Times, serif;">O<sup>L</sup></span> in <span style="font-family: 'Times New Roman', Times, serif;">ℝ<sup>N×d</sup></span> 
-            are the visual features from the last visual encoder layer and <span style="font-family: 'Times New Roman', Times, serif;">P<sub>s</sub></span> = 
-            <span style="font-family: 'Times New Roman', Times, serif;">P<sup>L</sup><sub>s</sub></span> in <span style="font-family: 'Times New Roman', Times, serif;">ℝ<sup>M×d</sup></span>, 
-            <span style="font-family: 'Times New Roman', Times, serif;">P<sub>g</sub></span> = <span style="font-family: 'Times New Roman', Times, serif;">P<sup>L</sup><sub>g</sub></span> in 
-            <span style="font-family: 'Times New Roman', Times, serif;">ℝ<sup>M×d</sup></span> are the word features of <sup>OC<sup>Spe</sup></sup> and <sup>OC<sup>Gen</sup></sup> from the last language encoder layer. 
-            The result of this operation are matrices <span style="font-family: 'Times New Roman', Times, serif;">S<sub>s</sub><sup>align</sup></span> in <span style="font-family: 'Times New Roman', Times, serif;">ℝ<sup>N×M</sup></span>, 
-            <span style="font-family: 'Times New Roman', Times, serif;">S<sub>g</sub><sup>align</sup></span> in <span style="font-family: 'Times New Roman', Times, serif;">ℝ<sup>N×M</sup></span>. 
-            Each element <span style="font-family: 'Times New Roman', Times, serif;">S<sub>s</sub><sup>align</sup>(i,j)</span> represents the alignment score between the 
-            <span style="font-family: 'Times New Roman', Times, serif;">i</span>-th proposal region and <sup>OC<sup>Spe</sup></sup>. Each element 
-            <span style="font-family: 'Times New Roman', Times, serif;">S<sub>g</sub><sup>align</sup>(i,j)</span> represents the alignment score between the 
-            <span style="font-family: 'Times New Roman', Times, serif;">i</span>-th proposal region and <sup>OC<sup>Gen</sup></sup>.
-        </p>
+        <p><em>iGLIP</em> takes an input image (<code>I</code>) and two types of prompts: a specific prompt (<code>𝑇<sub>s</sub></code>) and a general prompt (<code>𝑇<sub>g</sub></code>). Both prompts go through a text encoder, i.e., <code>BERTModule</code>, to obtain contextual word features (i.e., <code>P<sub>s</sub><sup>0</sup></code> and <code>P<sub>g</sub><sup>0</sup></code>). Simultaneously, the input image goes through a visual encoder, i.e., <code>DyHeadModule</code>, to acquire proposal features (i.e., <code>O<sup>0</sup></code>). Then, <code>L</code> deep fusion layers are applied into <code>P<sub>s</sub><sup>0</sup></code>, <code>P<sub>g</sub><sup>0</sup></code>, and <code>O<sup>0</sup></code>. Finally, the word-region alignment module is utilized to calculate the alignment score by performing a dot product between the deep fused features.</p>
 
-        <p>The resulting bounding boxes are filtered by different thresholds, where a <strong>high threshold <span style="font-family: 'Times New Roman', Times, serif;">𝒯</span><sup>h</sup></strong> 
-            is applied into <span style="font-family: 'Times New Roman', Times, serif;">S<sub>s</sub><sup>align</sup></span> to ensure only TP are detected, and 
-            a <strong>low threshold <span style="font-family: 'Times New Roman', Times, serif;">𝒯</span><sup>l</sup></strong> is applied into 
-            <span style="font-family: 'Times New Roman', Times, serif;">S<sub>g</sub><sup>align</sup></span> to include all objects proposals, 
-            which may include FP. All the TP obtained by <span style="font-family: 'Times New Roman', Times, serif;">S<sub>s</sub><sup>align</sup></span> 
-            are treated as a queries set <span style="font-family: 'Times New Roman', Times, serif;">𝒬<sub>q</sub></span> (i.e., template patterns), 
-            while all bounding boxes obtained by <span style="font-family: 'Times New Roman', Times, serif;">S<sub>g</sub><sup>align</sup></span> form the 
-            target set <span style="font-family: 'Times New Roman', Times, serif;">𝒬<sub>t</sub></span>. <i>Query-Guided Matching</i> module is then proposed to 
-            eliminate FP in <span style="font-family: 'Times New Roman', Times, serif;">𝒬<sub>t</sub></span> by using <span style="font-family: 'Times New Roman', Times, serif;">𝒬<sub>q</sub></span> 
-            as template patterns.
-        </p>
+        <p>The resulting bounding boxes are filtered using different thresholds. A <span class="high-threshold">high threshold <code>𝒯<sup>h</sup></code></span> is applied to <b><code>general prompt's result (general_result)</code></b> to ensure only true positives are detected, and a <span class="low-threshold">low threshold <code>𝒯<sup>l</sup></code></span> is applied to <b><code>specific prompt's result (specific_result)</code></b> to include all object proposals, which may include false positives. All true positives obtained by <b><code>specific_result</code></b> are treated as a query set <span class="variable">𝒬<sub>q</sub></span> (template patterns), while all bounding boxes obtained by <b><code>general_result</code></b> form the target set <span class="variable">𝒬<sub>t</sub></span>. A <span class="method">Query-Guided Matching</span> module is then proposed to eliminate false positives in <span class="variable">𝒬<sub>t</sub></span> by using <span class="variable">𝒬<sub>q</sub></span> as template patterns.</p>
 
         <div>
             <img class="figure" src="media/glip-iglip.png" width="100%" alt="Limitation 1">
