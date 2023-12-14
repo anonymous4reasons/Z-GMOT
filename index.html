@@ -215,6 +215,16 @@
             <b><u><span style="font-size: 20px;">Query-Guided Matching:</span></u></b>
         </p>
         
+        <p>To address the limitation of GLIP's deep fusion module not paying attention to specific properties, we propose a <strong style="font-family: 'Times New Roman', Times, serif;">Query-Guided Matching</strong> mechanism to filter false positives from the general object category set <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>t</sub></span>. Specifically, we use the TP obtained by the specific prompt as template patterns <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>q</sub></span> and query back on <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>t</sub></span> to find objects with similar visual properties. To perform the matching, we propose to utilize only visual features <span style="font-family: 'Times New Roman', Times, serif;">𝑂<sup>0</sup></span> extracted from the backbone (without the influence of text embeddings).</p>
+
+        <p>Let <span style="font-family: 'Times New Roman', Times, serif;">𝑂<sup>0</sup><sub>t</sub></span> and <span style="font-family: 'Times New Roman', Times, serif;">𝑂<sup>0</sup><sub>q</sub></span> represent the visual features of object proposals in <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>t</sub></span> and <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>q</sub></span>, the matching score is defined as the cosine similarity:</p>
+            
+        <blockquote>
+            <p><span style="font-family: 'Times New Roman', Times, serif;">S<sub>qt</sub> = cos(𝑂<sup>0</sup><sub>q</sub> &middot; (𝑂<sup>0</sup><sub>t</sub>)<sup>T</sup>)</span></p>
+        </blockquote>
+        
+        <p>The final detection results comprise the query objects and candidate objects with high similarity.</p>
+
 
 
         <p style="font-size: 22px;">
