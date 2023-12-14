@@ -133,18 +133,21 @@
         
         <!------------------------------------------------------Section Boundary-------------------------------------------------->
         <h2 id="method">
-            Methodology
+            Limitations
         </h2>
         <p style="font-size: 22px;">
-            <b>Limitations</b>: We empirically observe several limitations of GLIP as follows:
+            We empirically observe several limitations of GLIP as follows:
         </p>
         <p>
-            <b><u><span style="font-size: 20px;">Limitation 1 - High False Positives:</span></u></b> GLIP demonstrates reliable performance for the general object category (<sup>OC<sup>Gen</sup></sup>); 
-            however, it struggles to handle specific object categories (<sup>OC<sup>Spe</sup></sup>) with property descriptions, such as color 
-            or shape. As shown in Figure 1, when various thresholds <i>t</i> are applied, the outcomes of GLIP's detection model for 
-            <sup>OC<sup>Gen</sup></sup> prompt (e.g., <em>'car'</em>) remain relatively stable. In contrast, for the <sup>OC<sup>Spe</sup></sup> prompt (e.g., <em>'red car'</em>), 
-            the detected bounding boxes exhibit high variability, with true positives (TP) missing at high thresholds and false positives (FP) present at low thresholds. The trade-off 
-            between high TP and low FP makes it difficult to achieve optimal performance.
+            <b><u><span style="font-size: 20px;">Limitation 1 - High False Positives:</span></u></b> 
+            GLIP performs well in recognizing general object categories (e.g., 'car'), but encounters challenges when dealing with 
+            specific object categories that involve detailed property descriptions like color or shape (e.g., 'red car'). Figure 1 
+            illustrates that when different thresholds are applied, GLIP's detection model consistently identifies general object 
+            categories, maintaining stable results. However, when it comes to specific object categories, the detected bounding boxes 
+            show considerable variability. At high thresholds, true positives (correctly identified objects) are frequently missed, 
+            while at low thresholds, false positives (incorrectly identified objects) are prevalent. Balancing high true positives and 
+            low false positives becomes a challenging trade-off, making it difficult to achieve optimal performance in specific object 
+            category recognition.
         </p>
         <div>
             <img class="figure" src="media/limit1.png" width="100%" alt="Limitation 1">
@@ -152,18 +155,24 @@
 
         <p>
             <b><u><span style="font-size: 20px;">Limitation 2 - Deep fusion in GLIP weakens proposal features when dealing with specific object category:</span></u></b> 
-            The role of text embedding is critical in GLIP, as it has a significant impact on both token and proposal features. 
-            The token features <span>${P^i}$</span> and proposal features <span>${O^i}$</span> are fused through a deep fusion module, 
-            and thus the text embedding continues to influence proposal features throughout this module. In Fig. 2, we visualize the impact of 
-            the text embedding on GLIP's performance with the same threshold <i>t</i> for two cases of <sup>OC<sup>Gen</sup></sup> (i.e. 'car') 
-            and <sup>OC<sup>Spe</sup></sup> (i.e., 'red car'). While we obtain similar results on <sup>OC<sup>Gen</sup></sup>, the performance 
-            of GLIP is not reliable in the case of <sup>OC<sup>Spe</sup></sup>, even at the same threshold. Our empirical experiments suggest 
-            that the text embedding may either strengthen (in the case of <sup>OC<sup>Gen</sup></sup>) or weaken (in the case of <sup>OC<sup>Spe</sup></sup>) proposal features, 
-            despite the presence of strong visual feature
+            In GLIP, the way text is processed and represented (text embedding) plays a crucial role, affecting both individual 
+            elements (tokens) and overall features of proposed objects. The specific characteristics of tokens (${P^i}$) and proposed 
+            objects (${O^i}$) are combined using a deep fusion module, allowing text embedding to continually influence the features of 
+            proposed objects throughout this process. In Figure 2, we illustrate how text embedding impacts GLIP's performance at the 
+            same threshold (<i>t</i>) for two scenarios: general object recognition (e.g., 'car' represented as 
+            <sup>OC<sup>Gen</sup></sup>) and specific object recognition (e.g., 'red car' represented as <sup>OC<sup>Spe</sup></sup>). 
+            While GLIP consistently performs well for general object recognition, the same cannot be said for specific object 
+            recognition, even when using the same threshold. Our experiments indicate that the impact of text embedding varies—it can 
+            either enhance (for general object recognition) or weaken (for specific object recognition) the features of proposed objects, 
+            despite the presence of strong visual features.
         </p>
         <div>
             <img class="figure" src="media/limti2.png" width="100%" alt="Limitation 2">
         </div>
+
+        <h2 id="method">
+            Methodology
+        </h2>
         <p style="font-size: 22px;">
             <b>iGLIP</b>: In order to overcome the limitations of GLIP as discussed earlier, we propose iGLIP.
         </p>
