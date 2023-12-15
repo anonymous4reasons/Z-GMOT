@@ -402,12 +402,11 @@ ul.authors.links li {
 
 .pre-container {
     overflow: auto; /* Enable scrolling if the content overflows */
-    justify-content: left;
-    white-space: pre-line;
-    /* white-space: pre-wrap; Allow long lines to wrap within the container */
-    max-width: 100%; /* Prevent the <pre> from exceeding the parent's width */
+    text-align: left;
+    white-space: pre-wrap; /* Allow long lines to wrap within the container */
+    width: calc(100%/2 - 20px); /* Prevent the <pre> from exceeding the parent's width */
     max-height: 100%; /* Prevent the <pre> from exceeding the parent's height */
-  }
+}
 
 p {
     margin: 10px 0;
@@ -535,35 +534,31 @@ h3.results {
     margin-bottom: 1.5rem;
 }
 
-/* Style for the chat container */
-.chat-container {
-    max-width: 80%;
-    width: 1200px; /* Set a maximum width and a fixed width for larger screens */
-    margin: 0 auto;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px 20px;
-}
-
-/* Style for recipient's message (question) */
-.recipient-message {
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 5px 0;
-}
-
-/* Style for sender's message (answer) */
-.sender-message {
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 5px 0;
-}
-
 code {
     font-family: 'Times New Roman', Times, serif;
+}
+
+/* Style for dataset */
+.image-json-container {
+    display: flex;
+    height: 220px;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 0 0 0;
+}
+
+.image-dataset {
+    max-height: 100%;
+    object-fit: cover;
+    padding: 0 0 12px 0;
+}
+
+.json-dataset {
+    flex-grow: 1; /* Allow the text to take up remaining space */
+    overflow: auto; /* Add overflow property for text scrolling if needed */
+    text-align: left;
+    height: 96%;
+    white-space: pre-line; /* Preserve whitespace in the <pre> tag */
 }
 
 /* Style for the footer links */

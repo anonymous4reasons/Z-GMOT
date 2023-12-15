@@ -57,76 +57,85 @@
            in terms of advancement. Our dataset includes videos with a wider range of generic objects, each accompanied
            by its respective textual descriptions. Our dataset with textual description annotations are formatted in COCO format.
            Each generic object is labeled as follows:
-           <pre>
-            {
-                video: "",
-                label: [
-                    {
-                        object: "ball",
-                        object_synonym: [""],
-                        attribute: "red",
-                        attribute_synonym: [""],
-                        tracks = {..}
-                    },
-                    {
-                        object: "ball",
-                        object_synonym: [""],
-                        attribute: "black",
-                        attribute_synonym: [""],
-                        tracks: {..}
-                    }
-                ]
-            }
-            </pre>
+           <div class="image-container">
+                <pre class="pre-container">
+Text label
+{
+    video: "",
+    label: [
+        {
+            object: "",
+            object_synonym: [""],
+            attribute: "",
+            other_attributes: [""],
+            tracks = {}
+        },
+    ]
+}
+                </pre>
+
+                <pre class="pre-container">
+Track label
+{
+    video: "",
+    label: [
+        {
+            fix later
+        },
+    ]
+}
+                    </pre>
+           </div>
+           
            <ul>
                <li><b>“Video”</b>: video name. For example "airplane-0" </li>
                <li><b>”object"</b>: particular generic objects type. For example, aircraft</li>
                <li><b>“object_synonym”</b>: synonym of object. For example, sky vehicle, air transportation</li>
                <li><b>“attribute”</b>: specific characteristic of the object. For example, helicopter</li>
-               <li><b>“attribute_synonym”</b>: synonym of object's attributes. For example, chopper, copter</li>
+               <li><b>“other_attributes”</b>: object's extra attributes which not necessary visible but representative. For example, chopper, copter</li>
            </ul>
-           <div class="image-container">
-               <div class="image-content">
-                    <img src="media/dataset_gmot40.jpg" alt="Image 1" style="width:100%">
-                    <pre class="pre-container" style="text-align: left;">
-                    &nbsp;&nbsp;<b>“video”</b>: stock-3
-                    &nbsp;&nbsp;<b>“label”</b>: [{
-                        &nbsp;&nbsp;&nbsp;&nbsp;<b>”object"</b>: "stock"
-                        &nbsp;&nbsp;&nbsp;&nbsp;<b>“object_synonym”</b>: [“animal”, “mammal”]
-                        &nbsp;&nbsp;&nbsp;&nbsp;<b>“attribute”</b>: "wolf"
-                        &nbsp;&nbsp;&nbsp;&nbsp;<b>“attribute_synonym”</b>: [“husky”, “dog”]
-                        &nbsp;&nbsp;&nbsp;&nbsp;<b>“tracks”</b>: {...}
-                    }]
-                    </pre>
-               </div>
-               <div class="image-content">
-                   <img src="media/car1.jpg" alt="Image 2" style="width:100%">
-                   <pre class="pre-container" style="text-align: left;">
-                    &nbsp;&nbsp;<b>“video”</b>: car-1
-                    &nbsp;&nbsp;<b>“label”</b>: [{
-                        &nbsp;&nbsp;&nbsp;&nbsp;<b>”object"</b>: "car"
-                        &nbsp;&nbsp;&nbsp;&nbsp;<b>“object_synonym”</b>: [“vehicle”, “transportation”]
-                        &nbsp;&nbsp;&nbsp;&nbsp;<b>“attribute”</b>: "white light"
-                        &nbsp;&nbsp;&nbsp;&nbsp;<b>“attribute_synonym”</b>: [“white headlight”, “front light”]
-                        &nbsp;&nbsp;&nbsp;&nbsp;<b>“tracks”</b>: {...}
-                    }]
-                   </pre>
-               </div>
-               <div class="image-content">
-                   <img src="media/ball0.jpg" alt="Image 2" style="width:100%">
-                   <pre class="pre-container" style="text-align: left;">
-                    &nbsp;&nbsp;<b>“video”</b>: ball-0
-                    &nbsp;&nbsp;<b>“label”</b>: [{
-                       &nbsp;&nbsp;&nbsp;&nbsp;<b>”object"</b>: "ball"
-                       &nbsp;&nbsp;&nbsp;&nbsp;<b>“object_synonym”</b>: [“billard ball”, “cue ball”, "pool ball"]
-                       &nbsp;&nbsp;&nbsp;&nbsp;<b>“attribute”</b>: "red"
-                       &nbsp;&nbsp;&nbsp;&nbsp;<b>“attribute_synonym”</b>: [“crimson”, “scarlet”, "burgundy"]
-                       &nbsp;&nbsp;&nbsp;&nbsp;<b>“tracks”</b>: {...}
-                   }]
-                    </pre>
-               </div>
-               <!-- Add more images with captions as needed -->
-           </div>
+
+           <div class="image-json-container">
+            <img src="media/dataset_gmot40.jpg" alt="Image 1" class="image-dataset">
+            <pre class="json-dataset">
+              <b>“video”</b>: stock-3
+              <b>“label”</b>: [{
+                  &nbsp;&nbsp;&nbsp;&nbsp;<b>”object"</b>: "stock"
+                  &nbsp;&nbsp;&nbsp;&nbsp;<b>“object_synonym”</b>: [“wild dog”]
+                  &nbsp;&nbsp;&nbsp;&nbsp;<b>“attribute”</b>: ["gray fur"]
+                  &nbsp;&nbsp;&nbsp;&nbsp;<b>“other_attributes”</b>: [“four legs”, “sharp teeth”, 
+                  <div style="padding-left:13.00em;">"small ears", "strong jaw"]</div>&nbsp;&nbsp;&nbsp;&nbsp;<b>“tracks”</b>: {stock-3.txt}
+              }]
+            </pre>
+          </div>
+
+          <div class="image-json-container">
+            <img src="media/ball0.jpg" alt="Image 1" class="image-dataset">
+            <pre class="json-dataset">
+              <b>“video”</b>: ball-0
+              <b>“label”</b>: [{
+                  &nbsp;&nbsp;&nbsp;&nbsp;<b>”object"</b>: "stock"
+                  &nbsp;&nbsp;&nbsp;&nbsp;<b>“object_synonym”</b>: ["sphere, "billard ball",
+                  <div style="padding-left:13.00em;"> "billard sphere"]</div>&nbsp;&nbsp;&nbsp;&nbsp;<b>“attribute”</b>: ["circle", "round", red"]
+                  &nbsp;&nbsp;&nbsp;&nbsp;<b>“other_attributes”</b>: ["small", "smooth", "numbering",
+                  <div style="padding-left:13.00em;">"glossy"]</div>&nbsp;&nbsp;&nbsp;&nbsp;<b>“tracks”</b>: {ball-0.txt}
+              }]
+            </pre>
+          </div>
+
+          <div class="image-json-container">
+            <img src="media/car1.jpg" alt="Image 1" class="image-dataset">
+            <pre class="json-dataset">
+              <b>“video”</b>: car-1
+              <b>“label”</b>: [{
+                  &nbsp;&nbsp;&nbsp;&nbsp;<b>”object"</b>: "car"
+                  &nbsp;&nbsp;&nbsp;&nbsp;<b>“object_synonym”</b>: ["transport, "vehicle"]
+                  &nbsp;&nbsp;&nbsp;&nbsp;<b>“attribute”</b>: ["white light"]
+                  &nbsp;&nbsp;&nbsp;&nbsp;<b>“other_attributes”</b>: ["frontal side", "night covered"]
+                  &nbsp;&nbsp;&nbsp;&nbsp;<b>“tracks”</b>: {car-1.txt}
+              }]
+            </pre>
+          </div>
         </p>
     </div>
 
