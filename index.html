@@ -99,44 +99,32 @@
         <h2 id="introduction">
             Introduction
         </h2>
+        <div>
+            <img class="figure" src="media/teaser.png" width="100%" alt="method comparison">
+        </div>
         <p>
             Despite recent significant progress, Multi-Object Tracking (MOT) faces limitations such as reliance on prior knowledge and predefined categories, and struggles with unseen objects. To address this, Generic Multiple Object Tracking (GMOT) requires less prior information, but existing GMOT methods rely on initial bounding boxes and struggle with variations e.g., viewpoint, lighting, occlusion, scale, etc. We propose <b>Z-GMOT</b>, capable of tracking never-seen categories with no training examples, without predefined categories or initial bounding boxes. Our approach includes <b>iGLIP</b>, an improved Grounded language-image pretraining, for accurately detecting unseen objects with specific characteristics. Addressing challenges in tracking high-similarity objects within the same category, we introduce <b>MA-SORT</b>, which integrates motion and appearance-based matching. Extensive evaluation on GMOT-40 dataset, AnimalTrack test set, DanceTrack validation set demonstrates substantial improvements. Our code and models will be publicly available upon paper acceptance.
         </p>
-        <div>
-            <img class="figure" src="media/ZGMOT.jpg" width="100%" alt="Pipeline Overview">
-        </div>
 
-
-        <!-- <h2 id="rebuttal-aaai">
-            Rebuttal Section
-        </h2>
-        <div class="chat-container">
-            <div class="recipient-message">
-                <strong>Reviewer #1:</strong> Hello, how are you today?
-            </div>
-    
-            <div class="sender-message">
-                <strong>Answer:</strong> I'm doing well, thank you! How can I help you?
-            </div>
-            <br>
-    
-            <div class="recipient-message">
-                <strong>Reviewer #2:</strong> I have a question about your product.
-            </div>
-    
-            <div class="sender-message">
-                <strong>Answer:</strong> Sure, I'd be happy to help. What's your question?
-            </div>
-            <br>
-        </div>
-        <p> </p> -->
-        
         <!------------------------------------------------------Section Boundary-------------------------------------------------->
-        <h2 id="method">
+        
+        <h2 id="limitation">
             Limitations
         </h2>
         <p style="font-size: 22px;">
-            We empirically observe several limitations of GLIP as follows:
+            <b>What are the problems with current MOT methods?</b>
+        </p>
+        <p>
+            Multiple Object Tracking (MOT) plays a crucial role in diverse real-world scenarios, such as surveillance, security, autonomous driving, robotics, biology, etc. 
+            However, current MOT methods suffer from several limitations: they heavily depend on prior knowledge of tracking targets, requiring costly annotation efforts for large labeled datasets; they struggle with tracking unseen categories and objects of specific categories; they are limited in handling objects with indistinguishable appearances. 
+        </p>
+
+        <p style="font-size: 22px;">
+            <b>Vision Language model as detector - GLIP:</b>
+        </p>
+        <p>
+            In recent years, the abundance of image-text pairs on the Internet has given rise to the emergence of Vision-Language (VL) models, which combine the ability to comprehend visual data with natural language processing capabilities. Apart from traditional one-hot vector labels, semantic meanings and captions can be utilized, making CV tasks more flexible and capable of handling open-world scenarios by identifying novel concepts in real-world applications and recognizing previously unseen categories.
+            <br>However, we empirically noticed several limitations of GLIP as follows
         </p>
         <p>
             <b><u><span style="font-size: 20px;">Limitation 1 - High False Positives:</span></u></b> 
@@ -169,6 +157,50 @@
         <div>
             <img class="figure" src="media/limit2.png" width="100%" alt="Limitation 2">
         </div>
+
+        <!------------------------------------------------------Section Boundary-------------------------------------------------->
+        
+        <h2 id="zgmot">
+            Z-GMOT
+        </h2>
+        <div>
+            <img class="figure" src="media/ZGMOT.jpg" width="100%" alt="Pipeline Overview">
+        </div>
+        <p>
+            Based on the advancements of recent works in multi-modal, we propose a method which we believe is the future of multi-object tracking - Z-GMOT, a cutting-edge paradigm that seamlessly integrates Natural Language Processing (NLP) to redefine the way we perceive and interact with visual data. Z-GMOT stands at the forefront of innovation, offering unparalleled precision in tracking objects by leveraging advanced linguistic input.
+        </p>
+        <p>
+            Above we have an example of a single image encapsulates a multitude of intricacies: a bustling scene with various cars, each unique in its color and characteristics. With Z-GMOT, the paradigm transcends traditional limitations, effortlessly tracking not only the generic "all cars" but also delving into the realm of specificity with distinctions such as "red car," "yellow car," and "blue car."
+        </p>
+        <p>
+            In our exclusive demonstration, you can see the proficiency of Z-GMOT as it navigates through a captivating image, dynamically tracking and distinguishing between cars based on their color. Picture the finesse with which this paradigm adapts to your natural language queries, discerning the subtle nuances that set each car apart from the rest.
+        </p>
+
+
+        <!-- <h2 id="rebuttal-aaai">
+            Rebuttal Section
+        </h2>
+        <div class="chat-container">
+            <div class="recipient-message">
+                <strong>Reviewer #1:</strong> Hello, how are you today?
+            </div>
+    
+            <div class="sender-message">
+                <strong>Answer:</strong> I'm doing well, thank you! How can I help you?
+            </div>
+            <br>
+    
+            <div class="recipient-message">
+                <strong>Reviewer #2:</strong> I have a question about your product.
+            </div>
+    
+            <div class="sender-message">
+                <strong>Answer:</strong> Sure, I'd be happy to help. What's your question?
+            </div>
+            <br>
+        </div>
+        <p> </p> -->
+        
 
         <h2 id="method">
             Methodology
