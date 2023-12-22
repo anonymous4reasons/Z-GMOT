@@ -73,6 +73,11 @@ body {
 /* Style for the main content */
 
 /* Apply digital code style font */
+.figure-name {
+    font-family: serif;
+    text-align: center;
+}
+
 .code-font {
     font-family: "Courier New", monospace;
     text-align: center;

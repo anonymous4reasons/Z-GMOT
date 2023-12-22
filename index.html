@@ -95,13 +95,15 @@
 <!-- <iframe width="760" height="381" src="https://www.youtube.com/embed/IvxeJRg4rYg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
     
     <div class="n-article">
-
-        <h2 id="introduction">
-            Introduction
-        </h2>
+        
         <div>
             <img class="figure" src="media/teaser.png" width="100%" alt="method comparison">
+            <p class="figure-name"><b>Figure 1</b>: Comparison between existing methods with our current framework Z-GMOT for zero shot object detection</p>
         </div>
+
+        <h2 id="abstract">
+            Abstract
+        </h2>
         <p>
             Despite recent significant progress, Multi-Object Tracking (MOT) faces limitations such as reliance on prior knowledge and predefined categories, and struggles with unseen objects. To address this, Generic Multiple Object Tracking (GMOT) requires less prior information, but existing GMOT methods rely on initial bounding boxes and struggle with variations e.g., viewpoint, lighting, occlusion, scale, etc. We propose <b>Z-GMOT</b>, capable of tracking never-seen categories with no training examples, without predefined categories or initial bounding boxes. Our approach includes <b>iGLIP</b>, an improved Grounded language-image pretraining, for accurately detecting unseen objects with specific characteristics. Addressing challenges in tracking high-similarity objects within the same category, we introduce <b>MA-SORT</b>, which integrates motion and appearance-based matching. Extensive evaluation on GMOT-40 dataset, AnimalTrack test set, DanceTrack validation set demonstrates substantial improvements. Our code and models will be publicly available upon paper acceptance.
         </p>
@@ -128,14 +130,10 @@
         </p>
         <p>
             <b><u><span style="font-size: 20px;">Limitation 1 - High False Positives:</span></u></b> 
-            GLIP performs well in recognizing general object categories (e.g., 'car'), but encounters challenges when dealing with 
-            specific object categories that involve detailed property descriptions like color or shape (e.g., 'red car'). Figure 1 
-            illustrates that when different thresholds are applied, GLIP's detection model consistently identifies general object 
-            categories, maintaining stable results. However, when it comes to specific object categories, the detected bounding boxes 
-            show considerable variability. At high thresholds, true positives (correctly identified objects) are frequently missed, 
-            while at low thresholds, false positives (incorrectly identified objects) are prevalent. Balancing high true positives and 
-            low false positives becomes a challenging trade-off, making it difficult to achieve optimal performance in specific object 
-            category recognition.
+            Current object recognition models, like GLIP, perform well for general categories (e.g., 'car') but struggle with 
+            specific details (e.g., 'red car'). At high thresholds, important objects are often missed, while at low thresholds, 
+            incorrect objects are identified. Balancing this trade-off is challenging, making it hard to achieve optimal performance 
+            for specific object categories.
         </p>
         <div>
             <img class="figure" src="media/limit1.png" width="100%" alt="Limitation 1">
@@ -143,16 +141,10 @@
 
         <p>
             <b><u><span style="font-size: 20px;">Limitation 2 - Deep fusion in GLIP weakens proposal features when dealing with specific object category:</span></u></b> 
-            In GLIP, the way text is processed and represented (text embedding) plays a crucial role, affecting both individual 
-            elements (tokens) and overall features of proposed objects. The specific characteristics of tokens (${P^i}$) and proposed 
-            objects (${O^i}$) are combined using a deep fusion module, allowing text embedding to continually influence the features of 
-            proposed objects throughout this process. In Figure 2, we illustrate how text embedding impacts GLIP's performance at the 
-            same threshold (<i>t</i>) for two scenarios: general object recognition (e.g., 'car' represented as 
-            <sup>OC<sup>Gen</sup></sup>) and specific object recognition (e.g., 'red car' represented as <sup>OC<sup>Spe</sup></sup>). 
-            While GLIP consistently performs well for general object recognition, the same cannot be said for specific object 
-            recognition, even when using the same threshold. Our experiments indicate that the impact of text embedding varies—it can 
-            either enhance (for general object recognition) or weaken (for specific object recognition) the features of proposed objects, 
-            despite the presence of strong visual features.
+            GLIP uses text embedding to process and represent information, but it faces challenges in recognizing specific object 
+            categories. The impact of text embedding varies, either enhancing (for general objects) or weakening (for specific objects) 
+            the features of proposed objects. This inconsistency affects the overall performance of GLIP, especially for categories 
+            that involve detailed property descriptions.
         </p>
         <div>
             <img class="figure" src="media/limit2.png" width="100%" alt="Limitation 2">
@@ -205,61 +197,20 @@
         <h2 id="method">
             Methodology
         </h2>
-        <p style="font-size: 22px;">
-            <b>iGLIP</b>: In order to overcome the limitations of GLIP as discussed earlier, we propose iGLIP.
-        </p>
-        <p>To overcome a specific limitation (referred to as Limitation 1), we suggest a solution where we use a <strong>high threshold <code>𝒯<sup>h</sup></code></strong> for recognizing specific objects (<sup>OC<sup>Spe</sup></sup>) and a <strong>low threshold <code>𝒯<sup>l</sup></code></strong> for general objects (<sup>OC<sup>Gen</sup></sup>). This approach ensures that only true positives (correctly identified objects) are detected for specific objects, while allowing for the acceptance of false positives in the case of general objects. Proposals from specific objects are treated as queries, and we introduce a mechanism called <strong>Query-Guided Matching</strong> to filter out all false positive proposals from general objects.</p>
-
-        <p>Additionally, to address another limitation (Limitation 2), we propose using rich visual features obtained from the initial visual encoder layer (<code>O<sup>0</sup></code>) instead of the last layer feature (<code>O<sup>L</sup></code>) in our Query-Guided Matching process. The overall architecture of our proposed <em>iGLIP</em> is illustrated in Figure 2 (B).</p>
-
-        <p><em>iGLIP</em> takes an input image (<code>I</code>) and two types of prompts: a specific prompt (<code>𝑇<sub>s</sub></code>) and a general prompt (<code>𝑇<sub>g</sub></code>). Both prompts go through a text encoder, i.e., <code>BERTModule</code>, to obtain contextual word features (i.e., <code>P<sub>s</sub><sup>0</sup></code> and <code>P<sub>g</sub><sup>0</sup></code>). Simultaneously, the input image goes through a visual encoder, i.e., <code>DyHeadModule</code>, to acquire proposal features (i.e., <code>O<sup>0</sup></code>). Then, <code>L</code> deep fusion layers are applied into <code>P<sub>s</sub><sup>0</sup></code>, <code>P<sub>g</sub><sup>0</sup></code>, and <code>O<sup>0</sup></code>. Finally, the word-region alignment module is utilized to calculate the alignment score by performing a dot product between the deep fused features.</p>
-
-        <p>The resulting bounding boxes are filtered using different thresholds. A <span class="high-threshold">high threshold <code>𝒯<sup>h</sup></code></span> is applied to <b><code>general prompt's result (general_result)</code></b> to ensure only true positives are detected, and a <span class="low-threshold">low threshold <code>𝒯<sup>l</sup></code></span> is applied to <b><code>specific prompt's result (specific_result)</code></b> to include all object proposals, which may include false positives. All true positives obtained by <b><code>specific_result</code></b> are treated as a query set <span class="variable">𝒬<sub>q</sub></span> (template patterns), while all bounding boxes obtained by <b><code>general_result</code></b> form the target set <span class="variable">𝒬<sub>t</sub></span>. A <span class="method">Query-Guided Matching</span> module is then proposed to eliminate false positives in <span class="variable">𝒬<sub>t</sub></span> by using <span class="variable">𝒬<sub>q</sub></span> as template patterns.</p>
-
-        <div>
-            <img class="figure" src="media/glip-iglip.png" width="100%" alt="Limitation 1">
-        </div>
-
         <p>
-            <b><u><span style="font-size: 20px;">Query-Guided Matching:</span></u></b>
+            In our approach, we've developed innovative techniques to improve the way we track objects in diverse scenarios. We introduce two key components: iGLIP and MA-SORT.
         </p>
         
-        <p>To address the limitation of GLIP's deep fusion module not paying attention to specific properties, we propose a <strong style="font-family: 'Times New Roman', Times, serif;">Query-Guided Matching</strong> mechanism to filter false positives from the general object category set <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>t</sub></span>. Specifically, we use the TP obtained by the specific prompt as template patterns <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>q</sub></span> and query back on <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>t</sub></span> to find objects with similar visual properties. To perform the matching, we propose to utilize only visual features <span style="font-family: 'Times New Roman', Times, serif;">𝑂<sup>0</sup></span> extracted from the backbone (without the influence of text embeddings).</p>
-
-        <p>Let <span style="font-family: 'Times New Roman', Times, serif;">𝑂<sup>0</sup><sub>t</sub></span> and <span style="font-family: 'Times New Roman', Times, serif;">𝑂<sup>0</sup><sub>q</sub></span> represent the visual features of object proposals in <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>t</sub></span> and <span style="font-family: 'Times New Roman', Times, serif;">𝓑<sub>q</sub></span>, the matching score is defined as the cosine similarity:</p>
-
-        <blockquote>
-            <p><span style="font-family: 'Times New Roman', Times, serif;">S<sub>qt</sub> = cos(𝑂<sup>0</sup><sub>q</sub> &middot; (𝑂<sup>0</sup><sub>t</sub>)<sup>T</sup>)</span></p>
-        </blockquote>
-
-        <p>The final detection results comprise the query objects and candidate objects with high similarity.</p>
-
-
-
-        <p style="font-size: 22px;">
-            <b>MA-SORT</b>: We introduce MA-SORT, as an enhancement of OC-SORT, which itself extends the SORT
-        </p>
+        <h3>iGLIP: Smarter Object Recognition</h3>
         <p>
-            The standard similarity between track and box embeddings is defined using cosine distance, denoted as <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝐂<sub>𝑎</sub> ∈ ℜ<sup>𝑀×𝑁</sup></span>. In a typical tracking approach that combines visual appearance and motion cues, the cost matrix <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝐶</span> is computed as <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝐶(𝒯, 𝒟) = 𝑀<sub>c</sub>(𝒯, 𝒟) + 𝛼 𝐶<sub>𝑎</sub>(𝒯, 𝒟)</span>, where <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝑀<sub>c</sub></span> represents the motion cost, measured by the IoU cost matrix. Leveraging OC-SORT, which computes a virtual trajectory over the occlusion period to rectify the error accumulation of filter parameters during occlusions, the motion cost is defined as <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝑀<sub>c</sub>(𝒯, 𝒟) = IoU(𝒯, 𝒟) + 𝜆 𝐶<sub>𝑣</sub>(𝜏, 𝒯)</span>. Thus, the resulting cost matrix integrating both visual appearance and motion is as follows:
+            To overcome challenges in recognizing specific objects, we've enhanced GLIP. Using improved prompts and a clever matching mechanism, iGLIP accurately identifies objects, even those with detailed characteristics, without being misled by irrelevant information.
         </p>
-          
-        <figure>
-          <p style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold; text-align: center;">
-            𝐶(𝒯, 𝒟) = IoU(𝒯, 𝒟) + 𝜆 C<sub>𝑣</sub>(𝜏, 𝒯) + 𝛼 C<sub>𝑎</sub>(𝒯, 𝒟)
-          </p>
-          <figcaption style="text-align: center;">(Equation 1)</figcaption>
-        </figure>
-        <p>
-          As the weight on appearance decreases, we propose redistributing the remaining weight to motion. Thus, the adaptive motion weight 
-          <span style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold;">𝑊<sub>amw</sub></span> is defined as:
-        </p>
+        <img class="figure" src="media/glip-iglip.png" width="100%" alt="iGLIP Overview">
         
-        <figure>
-          <p style="font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold; text-align: center;">
-            𝑊<sub>amw</sub> = 1 + [1 - 𝑊<sub>aaw</sub>] = 2 - [1 - 𝜇<sub>det</sub> / (1 - cos(45°))]
-          </p>
-          <figcaption style="text-align: center;">(Equation 2)</figcaption>
-        </figure>
+        <h3>MA-SORT: More Accurate Tracking</h3>
+        <p>
+            Our second component, MA-SORT, boosts tracking accuracy by combining motion and appearance cues. This means our system can follow objects more precisely, especially in situations where appearance alone might be ambiguous. By integrating these two factors, MA-SORT adapts dynamically to different scenarios, making object tracking more reliable.
+        </p>
     </div>
 
     <footer>
