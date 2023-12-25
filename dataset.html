@@ -52,14 +52,13 @@
         <h2 class="dataset" id="dataset">
            Dataset
         </h2>
+        <p>In this work, we <em>introduce textual descriptions</em> to two existing GMOT datasets, named <strong>"Refer-GMOT40"</strong> and <strong>"Refer-Animal"</strong>. The <strong>"Refer-GMOT40"</strong> dataset includes 40 videos, each showcasing 10 different real-world object categories, with four sequences per category. The <strong>"Refer-Animal"</strong> dataset features 26 video sequences, each depicting 10 common animal categories. Each video is annotated with the object's name, a description of its attributes, and its tracks. The attribute descriptions focus on <strong>noticeable characteristics</strong> of the object, while <strong>"other_attributes"</strong> provide more detailed information, although these might not be visible throughout the entire video.</p>
+        <p>To align with the standard format of MOT challenges, each video is accompanied by <em>tracking ground truth data</em> in a separate text file. This ensures <strong>consistency with the conventions of MOT problems</strong>. The annotation is done in <strong>JSON format</strong>, and an example of this structure is provided in the study. Four annotators conducted this annotation, and the data is <strong>available to the public</strong>.</p>
         <p>
-           We offer a dataset that surpasses existing official tracking datasets, such as <b>GMOT-40</b>, <b>AnimalTrack</b> and <b>DanceTrack</b>,
-           in terms of advancement. Our dataset includes videos with a wider range of generic objects, each accompanied
-           by its respective textual descriptions. Our dataset with textual description annotations are formatted in COCO format.
-           Each generic object is labeled as follows:
+           Our dataset with textual description annotations are formatted in COCO format. Each generic object is labeled as follows:
            <div class="image-container">
                 <pre class="pre-container" style="border-right: 1px solid #ffffff;">
-<b>Text label</b>
+<b>Text label for referring with specific attributes</b>
 {
     video: "",
     label: [
@@ -75,7 +74,7 @@
                 </pre>
 
                 <pre class="pre-container">
-<b>Track label</b>
+<b>Track label for associating objects' IDs through time</b>
 1, 1, xl, yl, xr, yr, 1, 1, 1
 1, 2, xl, yl, xr, yr, 1, 1, 1
 1, 3, xl, yl, xr, yr, 1, 1, 1

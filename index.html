@@ -167,31 +167,6 @@
         <p>
             In our exclusive demonstration, you can see the proficiency of Z-GMOT as it navigates through a captivating image, dynamically tracking and distinguishing between cars based on their color. Picture the finesse with which this paradigm adapts to your natural language queries, discerning the subtle nuances that set each car apart from the rest.
         </p>
-
-
-        <!-- <h2 id="rebuttal-aaai">
-            Rebuttal Section
-        </h2>
-        <div class="chat-container">
-            <div class="recipient-message">
-                <strong>Reviewer #1:</strong> Hello, how are you today?
-            </div>
-    
-            <div class="sender-message">
-                <strong>Answer:</strong> I'm doing well, thank you! How can I help you?
-            </div>
-            <br>
-    
-            <div class="recipient-message">
-                <strong>Reviewer #2:</strong> I have a question about your product.
-            </div>
-    
-            <div class="sender-message">
-                <strong>Answer:</strong> Sure, I'd be happy to help. What's your question?
-            </div>
-            <br>
-        </div>
-        <p> </p> -->
         
 
         <h2 id="method">
@@ -206,10 +181,26 @@
             To overcome challenges in recognizing specific objects, we've enhanced GLIP. Using improved prompts and a clever matching mechanism, iGLIP accurately identifies objects, even those with detailed characteristics, without being misled by irrelevant information.
         </p>
         <img class="figure" src="media/glip-iglip.png" width="100%" alt="iGLIP Overview">
+        <p>
+            Up until now, the challenge of precisely detecting objects with rich details has remained a formidable task, especially 
+            when using Vision-Language Large Models (V-LLMs). These models, while powerful, often demand 
+            <span style="font-weight: bold; font-style: italic;">significant time and resources</span>. 
+            Unfortunately, their smaller counterparts tend to fare even worse in performance. Our approach introduces a transformative 
+            solution to this issue. Think of it as a <span style="font-weight: bold; color:orangered;">sophisticated filter</span> that effectively weeds out incorrect detections — what we call 
+            'False Positives.' This enhances the overall accuracy of the system. The key here is that even within a single category, 
+            objects can have diverse characteristics, which sometimes confuses the Vision-Language (VL) model. Our method smartly 
+            navigates these complexities, ensuring a more reliable and precise object detection
+        </p>
         
         <h3>MA-SORT: More Accurate Tracking</h3>
         <p>
-            Our second component, MA-SORT, boosts tracking accuracy by combining motion and appearance cues. This means our system can follow objects more precisely, especially in situations where appearance alone might be ambiguous. By integrating these two factors, MA-SORT adapts dynamically to different scenarios, making object tracking more reliable.
+            Our innovative second component, MA-SORT, elevates the precision of object tracking to new heights. 
+            This advanced method merges motion and appearance cues, empowering our system to track objects with remarkable accuracy. 
+            This is particularly effective in challenging situations where relying solely on appearance could lead to confusion — 
+            imagine trying to differentiate between multiple, similar-looking objects. MA-SORT cleverly blends these two crucial 
+            elements, adjusting their importance based on real-time evidence and calculations. This dynamic adaptation allows for more 
+            dependable and accurate tracking across a variety of scenarios, ensuring that objects are followed with unparalleled 
+            precision.
         </p>
     </div>
 
