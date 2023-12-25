@@ -17,6 +17,74 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
     <script defer src="js/fontawesome.all.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        th {
+            background-color: #ddd;
+        }
+        .highlight {
+            font-weight: bold;
+        }
+        .reference {
+            font-style: italic;
+            font-size: smaller;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .italic {
+            font-style: italic;
+        }
+        .underline {
+            text-decoration: underline;
+        }
+        .checkmark {
+            color: green;
+        }
+        .xmark {
+            color: red;
+        }
+        .category-header {
+            background-color: #c3e6cb;
+        }
+        .sub-category-header {
+            background-color: #bee5eb;
+        }
+        .dataset-name {
+            background-color: #fff3cd;
+        }
+        .asparagus {
+            background-color: #87a96b; /* Asparagus */
+        }
+        .babyblue {
+            background-color: #89cff0; /* Baby blue */
+        }
+        .almond {
+            background-color: #efdecd; /* Almond */
+        }
+        .aureolin {
+            background-color: #fdee00; /* Aureolin */
+        }
+        caption {
+            caption-side: bottom;
+            margin-bottom: 10px;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,49 +117,590 @@
     </div>
 
     <div class="n-article">
+
+        <h3 class="results" id="dataset">
+            Datasets comparison
+        </h3>
+
+        <table>
+            <caption>Comparison of <b>existing datasets</b> of SOT, MOT, GSOT, GMOT. ``#'' represents the quantity of the respective items. <span class="italic">, Vid. denote Categories and Videos. NLP indicates textual natural language descriptions.</span></caption>
+            <tr>
+                <th></th>
+                <th>Datasets</th>
+                <th>NLP</th>
+                <th>#Cat.</th>
+                <th>#Vid.</th>
+                <th>#Frames</th>
+                <th>#Tracks</th>
+                <th>#Boxs</th>
+            </tr>
+            <!-- SOT Category -->
+            <tr class="asparagus">
+                <td class="category-label" rowspan="5">SOT</td>
+                <td>OTB2013</td>
+                <td class="xmark">✖</td>
+                <td>10</td>
+                <td>51</td>
+                <td>29K</td>
+                <td>51</td>
+                <td>29K</td>
+            </tr>
+            <tr class="asparagus">
+                <td>VOT2017</td>
+                <td class="xmark">✖</td>
+                <td>24</td>
+                <td>60</td>
+                <td>21K</td>
+                <td>60</td>
+                <td>21K</td>
+            </tr>
+            <tr class="asparagus">
+                <td>TrackingNet</td>
+                <td class="xmark">✖</td>
+                <td>21</td>
+                <td>31K</td>
+                <td>14M</td>
+                <td>31K</td>
+                <td>14M</td>
+            </tr>
+            <tr class="asparagus">
+                <td>LaSOT</td>
+                <td class="checkmark">✔</td>
+                <td>70</td>
+                <td>1.4K</td>
+                <td>3.52M</td>
+                <td>1.4K</td>
+                <td>3.52M</td>
+            </tr>
+            <tr class="asparagus">
+                <td>TNL2K</td>
+                <td class="checkmark">✔</td>
+                <td>-</td>
+                <td>2K</td>
+                <td>1.24M</td>
+                <td>2K</td>
+                <td>1.24M</td>
+            </tr>
+            <!-- MOT Category -->
+            <tr class="babyblue">
+                <td class="category-label" rowspan="7">MOT</td>
+                <td>MOT17</td>
+                <td class="xmark">✖</td>
+                <td>1</td>
+                <td>14</td>
+                <td>11.2K</td>
+                <td>1.3K</td>
+                <td>0.3M</td>
+            </tr>
+            <tr class="babyblue">
+                <td>MOT20 (Dendorfer et al., 2020)</td>
+                <td class="xmark">✖</td>
+                <td>1</td>
+                <td>8</td>
+                <td>13.41K</td>
+                <td>3.45K</td>
+                <td>1.65M</td>
+            </tr>
+            <tr class="babyblue">
+                <td>Omni-MOT (Sun et al., 2020b)</td>
+                <td class="xmark">✖</td>
+                <td>1</td>
+                <td>-</td>
+                <td>14M+</td>
+                <td>250K</td>
+                <td>110M</td>
+            </tr>
+            <tr class="babyblue">
+                <td>DanceTrack (Sun et al., 2022)</td>
+                <td class="xmark">✖</td>
+                <td>1</td>
+                <td>10</td>
+                <td>105K</td>
+                <td>990</td>
+                <td>-</td>
+            </tr>
+            <tr class="babyblue">
+                <td>TAO (Dave et al., 2020)</td>
+                <td class="xmark">✖</td>
+                <td>833</td>
+                <td>2.9K</td>
+                <td>2.6M</td>
+                <td>17.2K</td>
+                <td>333K</td>
+            </tr>
+            <tr class="babyblue">
+                <td>SportMOT (Cui et al., 2023)</td>
+                <td class="xmark">✖</td>
+                <td>1</td>
+                <td>240</td>
+                <td>150K</td>
+                <td>3.4K</td>
+                <td>1.62M</td>
+            </tr>
+            <tr class="babyblue">
+                <td>Refer-KITTI (Wu et al., 2023) </td>
+                <td class="checkmark">✔</td>
+                <td>-</td>
+                <td>18</td>
+                <td>6.65K</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <!-- GSOT Category -->
+            <tr class="almond">
+                <td class="category-label" rowspan="2">GSOT</td>
+                <td>GOT-10 (Huang et al., 2019)</td>
+                <td class="xmark">✖</td>
+                <td>563</td>
+                <td>10K</td>
+                <td>1.5M</td>
+                <td>10K</td>
+                <td>1.5M</td>
+            </tr>
+            <tr class="almond">
+                <td>Fish (Kay et al., 2022)</td>
+                <td class="xmark">✖</td>
+                <td>1</td>
+                <td>1.6K</td>
+                <td>527.2K</td>
+                <td>8.25K</td>
+                <td>516K</td>
+            </tr>
+            <!-- GMOT Category -->
+            <tr class="aureolin">
+                <td class="category-label" rowspan="4">GMOT</td>
+                <td>AnimalTrack (Zhang et al., 2022b)</td>
+                <td class="xmark">✖</td>
+                <td>10</td>
+                <td>58</td>
+                <td>24.7K</td>
+                <td>1.92K</td>
+                <td>429K</td>
+            </tr>
+            <tr class="aureolin">
+                <td>GMOT-40 (Bai et al., 2021)</td>
+                <td class="xmark">✖</td>
+                <td>10</td>
+                <td>40</td>
+                <td>9K</td>
+                <td>2.02K</td>
+                <td>256K</td>
+            </tr>
+            <tr class="aureolin">
+                <td class="bold">Refer-Animal(Ours)</td>
+                <td class="checkmark">✔</td>
+                <td>10</td>
+                <td>58</td>
+                <td>24.7K</td>
+                <td>1.92K</td>
+                <td>429K</td>
+            </tr>
+            <tr class="aureolin">
+                <td class="bold">Refer-GMOT(Ours)</td>
+                <td class="checkmark">✔</td>
+                <td>10</td>
+                <td>40</td>
+                <td>9K</td>
+                <td>2.02K</td>
+                <td>256K</td>
+            </tr>
+        </table>
+
+        <h3 class="results" id="quantitative">
+            Quantitative Results
+        </h3>
+
             <p>
                 We conduct extensive experiments to empirically prove the performance of our proposed Z-GMOT
                 including both detection with Open-CSOD and association with MAC-SORT in the GMOT problem.
                 Our strategy can help bridging the gap between human's intention and computer understanding to provide
                 flexibility in tracking objects with distinctive characteristics follow input texts.
             </p>
-            
-            <h3 class="results" id="qunatitative">
-                Quantitative Results
-            
-            </h3>
-            <div>
-                <img class="figure" src="media/table1.png" width="100%" alt="Table 1 Result">
-                <p style="font-size: 20px;">
-                    Table 1: <b>Open OD</b> comparison on G-MOT40 between our
-                    <b>Open-CSOD</b> with GLIP, iGLIP, GroundingDINO. The best score is in <b>bold</b>.
-                </p>
-            </div>
-            <div>
-                <img class="figure" src="media/table2.png" width="100%" alt="Table 1 Result">
-                <p style="font-size: 20px;">
-                    Table 2: <b>Tracking</b> comparison on <b>GMOT-40</b> dataset between our <b>MAC-SORT</b> with various trackers using OpenCSOD as object detector. The best performance of each tracker is highlighted in <b>bold</b>.
-                </p>
-            </div>
-            <div>
-                <img class="figure" src="media/table3.png" width="100%" alt="Table 1 Result">
-                <p style="font-size: 20px;">
-                    Table 3: <b>Tracking</b> comparison on <b>AnimalTrack-testset</b> between our <b>Open-CSOD</b> with existing object detectors and our <b>MAC-SORT</b> with other trackers. Faster-RNN and YOLO-X were fully-supervised (F-sup.) trained on AnimalTrack (denoted ‡) and MS-COCO (denoted ∗).
 
-            </div>
-            <div>
-                <img class="figure" src="media/table4.png" width="100%" alt="Table 1 Result">
-                <p style="font-size: 20px;">
-                    Table 4: <b>Tracking</b> performance on <b>DanceTrack-testset</b>. We compare our <b>Z-GMOT</b> with other fully-supervised (Fsup.) MOT trained on DanceTrack-trainset and object detector YOLOX.
-                </p>
-            </div>
-            <div>
-                <img class="figure" src="media/table5.png" width="100%" alt="Table 1 Result">
-                <p style="font-size: 20px;">
-                    Table 5: Ablation study on the impact of each modules in our proposed Z-GMOT. SORT is substitute when MACSORT is not used.
-                </p>
-            </div>
-            
+
+            <table>
+                <caption>
+                    <u>Table 2: Tracking comparison</u> on <i>Refer-GMOT40</i> dataset between our iGLIP with SOTA OS-OD on various trackers. For each tracker, the best scores are highlighted in <b>bold</b>.
+                </caption>
+                <tr>
+                    <th>Trackers</th>
+                    <th>Detectors</th>
+                    <th>#-Shot</th>
+                    <th>HOTA↑</th>
+                    <th>MOTA↑</th>
+                    <th>IDF1↑</th>
+                </tr>
+                <tr>
+                    <td rowspan="2">SORT<br><span class="reference">[Bewley et al., 2016]</span></td>
+                    <td>OS-OD</td>
+                    <td>one-shot</td>
+                    <td>30.05</td>
+                    <td>20.83</td>
+                    <td>33.90</td>
+                </tr>
+                <tr>
+                    <td><b class="highlight">iGLIP (Ours)</b></td>
+                    <td>zero-shot</td>
+                    <td class="highlight">54.21</td>
+                    <td class="highlight">62.90</td>
+                    <td class="highlight">64.34</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">DeepSORT<br><span class="reference">[Wojke et al., 2017]</span></td>
+                    <td>OS-OD</td>
+                    <td>one-shot</td>
+                    <td>27.82</td>
+                    <td>17.96</td>
+                    <td>30.37</td>
+                </tr>
+                <tr>
+                    <td><b class="highlight">iGLIP (Ours)</b></td>
+                    <td>zero-shot</td>
+                    <td class="highlight">50.45</td>
+                    <td class="highlight">58.99</td>
+                    <td class="highlight">57.55</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">ByteTrack<br><span class="reference">[Zhang et al., 2022c]</span></td>
+                    <td>OS-OD</td>
+                    <td>one-shot</td>
+                    <td>29.89</td>
+                    <td>20.30</td>
+                    <td>34.70</td>
+                </tr>
+                <tr>
+                    <td><b class="highlight">iGLIP (Ours)</b></td>
+                    <td>zero-shot</td>
+                    <td class="highlight">53.69</td>
+                    <td class="highlight">61.49</td>
+                    <td class="highlight">66.21</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">OC-SORT<br><span class="reference">[Cao et al., 2023]</span></td>
+                    <td>OS-OD</td>
+                    <td>one-shot</td>
+                    <td>30.35</td>
+                    <td>20.60</td>
+                    <td>34.37</td>
+                </tr>
+                <tr>
+                    <td><b class="highlight">iGLIP (Ours)</b></td>
+                    <td>zero-shot</td>
+                    <td class="highlight">56.51</td>
+                    <td class="highlight">62.76</td>
+                    <td class="highlight">67.40</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Deep-OCSORT<br><span class="reference">[Maggiolino et al., 2023]</span></td>
+                    <td>OS-OD</td>
+                    <td>one-shot</td>
+                    <td>30.37</td>
+                    <td>21.10</td>
+                    <td>35.12</td>
+                </tr>
+                <tr>
+                    <td><b class="highlight">iGLIP (Ours)</b></td>
+                    <td>zero-shot</td>
+                    <td class="highlight">55.89</td>
+                    <td class="highlight">64.02</td>
+                    <td class="highlight">66.52</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">MOTRv2<br><span class="reference">[Zhang et al., 2023]</span></td>
+                    <td>OS-OD</td>
+                    <td>one-shot</td>
+                    <td>23.75</td>
+                    <td>13.87</td>
+                    <td>25.17</td>
+                </tr>
+                <tr>
+                    <td><b class="highlight">iGLIP (Ours)</b></td>
+                    <td>zero-shot</td>
+                    <td class="highlight">31.32</td>
+                    <td class="highlight">18.54</td>
+                    <td class="highlight">31.28</td>
+                </tr>
+            </table>
+
+            <table>
+                <caption class="underline">Table 3: Tracking comparison on <i>Refer-GMOT40</i> dataset between our <i>MA-SORT</i> with other trackers. Our proposed <i>iGLIP</i> is used as the object detection. The best scores are highlighted in <b>bold</b>.</caption>
+                <tr>
+                    <th>Trackers</th>
+                    <th>HOTA↑</th>
+                    <th>MOTA↑</th>
+                    <th>IDF1↑</th>
+                </tr>
+                <tr>
+                    <td>SORT<br><span class="reference">[bewley2016simple]</span></td>
+                    <td>54.21</td>
+                    <td>62.90</td>
+                    <td>64.34</td>
+                </tr>
+                <tr>
+                    <td>DeepSORT<br><span class="reference">[wojke2017simple]</span></td>
+                    <td>50.45</td>
+                    <td>58.99</td>
+                    <td>57.55</td>
+                </tr>
+                <tr>
+                    <td>ByteTrack<br><span class="reference">[zhang2021bytetrack]</span></td>
+                    <td>53.69</td>
+                    <td>61.49</td>
+                    <td>66.21</td>
+                </tr>
+                <tr>
+                    <td>OC-SORT<br><span class="reference">[cao2023observation]</span></td>
+                    <td>56.51</td>
+                    <td>62.76</td>
+                    <td>67.40</td>
+                </tr>
+                <tr>
+                    <td>Deep-OCSORT<br><span class="reference">[maggiolino2023deep]</span></td>
+                    <td>55.89</td>
+                    <td>64.02</td>
+                    <td>66.52</td>
+                </tr>
+                <tr>
+                    <td>MOTRv2<br><span class="reference">[zhang2023motrv2]</span></td>
+                    <td>31.32</td>
+                    <td>18.54</td>
+                    <td>31.28</td>
+                </tr>
+                <tr>
+                    <td class="bold">MA-SORT (Ours)</td>
+                    <td class="bold">56.75</td>
+                    <td class="bold">64.62</td>
+                    <td class="bold">68.17</td>
+                </tr>
+            </table>
+
+            <table>
+                <caption>
+                    <span class="underline">Table 4: Tracking comparison</span> on <i>Refer-Animal</i> between our <i>Z-GMOT</i> and existing <i>fully-supervised MOT</i> methods. The best scores are highlighted in <b>bold</b>.
+                </caption>
+                <tr>
+                    <th>Tracker</th>
+                    <th>Detector</th>
+                    <th>Train</th>
+                    <th>HOTA<span class="arrow-up"></span></th>
+                    <th>MOTA<span class="arrow-up"></span></th>
+                    <th>IDF1<span class="arrow-up"></span></th>
+                </tr>
+                <tr>
+                    <td>SORT</td>
+                    <td>FRCNN<br><span class="reference">[ren2015faster]</span></td>
+                    <td class="checkmark">✔</td>
+                    <td>42.80</td>
+                    <td>55.60</td>
+                    <td>49.20</td>
+                </tr>
+                <tr>
+                    <td>DeepSORT</td>
+                    <td>FRCNN<br><span class="reference">[ren2015faster]</span></td>
+                    <td class="checkmark">✔</td>
+                    <td>32.80</td>
+                    <td>41.40</td>
+                    <td>35.20</td>
+                </tr>
+                <tr>
+                    <td>ByteTrack</td>
+                    <td>YOLOX<br><span class="reference">[yolox2021]</span></td>
+                    <td class="checkmark">✔</td>
+                    <td>40.10</td>
+                    <td>38.50</td>
+                    <td>51.20</td>
+                </tr>
+                <tr>
+                    <td>TransTrack</td>
+                    <td>YOLOX<br><span class="reference">[yolox2021]</span></td>
+                    <td class="checkmark">✔</td>
+                    <td>45.40</td>
+                    <td>48.30</td>
+                    <td>53.40</td>
+                </tr>
+                <tr>
+                    <td>QDTrack</td>
+                    <td>YOLOX<br><span class="reference">[yolox2021]</span></td>
+                    <td class="checkmark">✔</td>
+                    <td>47.00</td>
+                    <td>55.70</td>
+                    <td>56.30</td>
+                </tr>
+                <tr>
+                    <td class="bold">MA-SORT (Ours)</td>
+                    <td>YOLOX<br><span class="reference">[yolox2021]</span></td>
+                    <td class="checkmark">✔</td>
+                    <td class="bold">57.86</td>
+                    <td class="bold">68.32</td>
+                    <td class="bold">63.01</td>
+                </tr>
+                <tr>
+                    <td class="bold">MA-SORT (Ours)</td>
+                    <td class="bold">iGLIP (Z-GMOT) (Ours)</td>
+                    <td class="xmark">✖</td>
+                    <td>53.28</td>
+                    <td>57.64</td>
+                    <td>58.43</td>
+                </tr>
+            </table>
+
+            <table>
+                <caption>
+                    <span class="underline">Table 5: Ablation study of generalizability</span> of <span class="italic">Z-GMOT</span> on <i>DanceTrack</i> validation set with <i>MOT task</i>.
+                </caption>
+                <tr>
+                    <th>Trackers</th>
+                    <th>Detectors</th>
+                    <th>Train</th>
+                    <th>HOTA↑</th>
+                    <th>MOTA↑</th>
+                    <th>IDF1↑</th>
+                </tr>
+                <tr>
+                    <td>SORT<br><span class="reference">[bewley2016simple]</span></td>
+                    <td>YOLOX<br><span class="reference">[yolox2021]</span></td>
+                    <td class="checkmark">✔</td>
+                    <td>47.80</td>
+                    <td>88.20</td>
+                    <td>48.30</td>
+                </tr>
+                <tr>
+                    <td>DeepSORT<br><span class="reference">[wojke2017simple]</span></td>
+                    <td>YOLOX<br><span class="reference">[yolox2021]</span></td>
+                    <td class="checkmark">✔</td>
+                    <td>45.80</td>
+                    <td>87.10</td>
+                    <td>46.80</td>
+                </tr>
+                <tr>
+                    <td>MOTDT<br><span class="reference">[Chen2018RealTimeMP]</span></td>
+                    <td>YOLOX<br><span class="reference">[yolox2021]</span></td>
+                    <td class="checkmark">✔</td>
+                    <td>39.20</td>
+                    <td>84.30</td>
+                    <td>39.60</td>
+                </tr>
+                <tr>
+                    <td>ByteTrack<br><span class="reference">[zhang2021bytetrack]</span></td>
+                    <td>YOLOX<br><span class="reference">[yolox2021]</span></td>
+                    <td class="checkmark">✔</td>
+                    <td>47.10</td>
+                    <td class="bold">88.20</td>
+                    <td>51.90</td>
+                </tr>
+                <tr>
+                    <td>OC-SORT<br><span class="reference">[cao2023observation]</span></td>
+                    <td>YOLOX<br><span class="reference">[yolox2021]</span></td>
+                    <td class="checkmark">✔</td>
+                    <td>52.10</td>
+                    <td>87.30</td>
+                    <td>51.60</td>
+                </tr>
+                <tr>
+                    <td class="bold">MA-SORT (Ours)</td>
+                    <td>YOLOX<br><span class="reference">[yolox2021]</span></td>
+                    <td class="checkmark">✔</td>
+                    <td class="bold">53.44</td>
+                    <td>87.31</td>
+                    <td class="bold">53.78</td>
+                </tr>
+                <tr>
+                    <td class="bold">MA-SORT (Ours)</td>
+                    <td class="bold">iGLIP Z-GMOT (Ours)</td>
+                    <td class="xmark">✖</td>
+                    <td>47.57</td>
+                    <td>83.11</td>
+                    <td>46.58</td>
+                </tr>
+            </table>
+
+            <table>
+                <caption><span class="underline">Table 6: Ablation study of effectiveness of <i>MA-SORT</i> on <i>MOT20</i> test set with <i>MOT task</i>.</span> <span class="italic">As ByteTrack, OC-SORT (gray) uses different thresholds for test set sequences and offline interpolation procedure, we also report scores by disabling these as ByteTrack<sup>†</sup>, OC-SORT<sup>†</sup>. The best scores are highlighted in <b>bold</b>.</span></caption>
+                <tr>
+                    <th>Trackers</th>
+                    <th>HOTA↑</th>
+                    <th>MOTA↑</th>
+                    <th>IDF1↑</th>
+                </tr>
+                <tr>
+                    <td>MeMOT</td>
+                    <td>54.1</td>
+                    <td>63.7</td>
+                    <td>66.1</td>
+                </tr>
+                <tr>
+                    <td>FairMOT</td>
+                    <td>54.6</td>
+                    <td>61.8</td>
+                    <td>67.3</td>
+                </tr>
+                <tr>
+                    <td>TransTrack</td>
+                    <td>48.9</td>
+                    <td>65.0</td>
+                    <td>59.4</td>
+                </tr>
+                <tr>
+                    <td>TrackFormer</td>
+                    <td>54.7</td>
+                    <td>68.6</td>
+                    <td>65.7</td>
+                </tr>
+                <tr>
+                    <td>ReMOT</td>
+                    <td>61.2</td>
+                    <td>77.4</td>
+                    <td>73.1</td>
+                </tr>
+                <tr>
+                    <td>GSDT</td>
+                    <td>53.6</td>
+                    <td>67.1</td>
+                    <td>67.5</td>
+                </tr>
+                <tr>
+                    <td>CSTrack</td>
+                    <td>54.0</td>
+                    <td>66.6</td>
+                    <td>68.6</td>
+                </tr>
+                <tr>
+                    <td>TransMOT</td>
+                    <td>-</td>
+                    <td>77.4</td>
+                    <td>75.2</td>
+                </tr>
+                <tr class="gray">
+                    <td>ByteTrack</td>
+                    <td>61.3</td>
+                    <td>77.8</td>
+                    <td>75.2</td>
+                </tr>
+                <tr class="gray">
+                    <td>OC-SORT</td>
+                    <td>62.4</td>
+                    <td>75.7</td>
+                    <td>76.3</td>
+                </tr>
+                <tr>
+                    <td>ByteTrack<sup>†</sup></td>
+                    <td>60.4</td>
+                    <td>74.2</td>
+                    <td>74.5</td>
+                </tr>
+                <tr>
+                    <td>OC-SORT<sup>†</sup></td>
+                    <td>60.5</td>
+                    <td>73.1</td>
+                    <td>74.4</td>
+                </tr>
+                <tr class="bold">
+                    <td>MA-SORT (Ours)</td>
+                    <td>61.4</td>
+                    <td>77.6</td>
+                    <td>75.5</td>
+                </tr>
+            </table>
             
 
         </div>
